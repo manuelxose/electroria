@@ -1,0 +1,369 @@
+<section class="dashboard-shell">
+  <div class="site-container dashboard-layout">
+    <aside class="dashboard-sidebar surface-card">
+      <a class="brand auth-brand" routerLink="/" aria-label="Volver al site de TecnoRia">
+        <span class="brand-mark">TR</span>
+        <span class="brand-copy">
+          <strong>TecnoRia</strong>
+          <small>Dashboard editorial y operativo</small>
+        </span>
+      </a>
+
+      <span class="panel-label">Panel privado</span>
+      <h1>Gestion centralizada para blog y procesos internos.</h1>
+      <p>
+        El panel usa la misma base visual del site publico y consume la API
+        corporativa para autenticacion, blog y jobs de scraping.
+      </p>
+
+      <div class="dashboard-nav">
+        <button class="dashboard-nav__item" type="button" (click)="resetEditor()">
+          Nuevo post
+        </button>
+        <a class="dashboard-nav__item" href="#posts">Listado de posts</a>
+        <a class="dashboard-nav__item" href="#scraper">Jobs de scraper</a>
+      </div>
+
+      <div class="dashboard-user">
+        <strong>{{ user?.email || "Sesion validandose" }}</strong>
+        <span>{{ user?.role || "admin" }}</span>
+      </div>
+
+      <div class="dashboard-sidebar__footer">
+        <a class="button button-secondary button-block" routerLink="/">Volver al site</a>
+        <button class="button button-primary button-block" type="button" (click)="logout()">
+          Cerrar sesion
+        </button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <section class="card-grid card-grid--three">
+        <article class="surface-card admin-stat">
+          <span class="chip chip-soft">Blog</span>
+          <strong>{{ activePostsCount }}</strong>
+          <p>Posts cargados desde la API listos para editar o revisar.</p>
+        </article>
+
+        <article class="surface-card admin-stat">
+          <span class="chip chip-soft">Scraper</span>
+          <strong>{{ runningJobsCount }}</strong>
+          <p>Jobs en cola o en ejecucion dentro de la sesion actual.</p>
+        </article>
+
+        <article class="surface-card admin-stat">
+          <span class="chip chip-soft">Sesion</span>
+          <strong>{{ user?.role || "admin" }}</strong>
+          <p>Acceso protegido por cookie y validacion SSR en el servidor web.</p>
+        </article>
+      </section>
+
+      <div class="dashboard-stack">
+        <section id="editor" class="surface-card dashboard-section">
+          <div class="split-head split-head--compact admin-section-head">
+            <div>
+              <span class="eyebrow">Editor</span>
+              <h2>{{ postDraft.id ? "Editar post" : "Crear post" }}</h2>
+              <p>
+                Publica contenido con `slug`, descripcion corta, tags e imagen
+                siguiendo el contrato actual de la API.
+              </p>
+            </div>
+            <div class="spotlight-actions">
+              <button class="button button-secondary" type="button" (click)="resetEditor()">
+                Limpiar formulario
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="postSuccess" class="alert alert-success">
+            {{ postSuccess }}
+          </div>
+
+          <div *ngIf="postError" class="alert alert-error">
+            {{ postError }}
+          </div>
+
+          <form class="contact-form__form" (ngSubmit)="savePost()">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label form-label-required" for="post-title">Titulo</label>
+                <input
+                  id="post-title"
+                  class="form-control"
+                  type="text"
+                  name="title"
+                  [(ngModel)]="postDraft.title"
+                  (blur)="handleTitleBlur()"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label form-label-required" for="post-slug">Slug</label>
+                <input
+                  id="post-slug"
+                  class="form-control"
+                  type="text"
+                  name="slug"
+                  [(ngModel)]="postDraft.slug"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label form-label-required" for="post-author">Autor</label>
+                <input
+                  id="post-author"
+                  class="form-control"
+                  type="text"
+                  name="author"
+                  [(ngModel)]="postDraft.author"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="post-tags">Tags</label>
+                <input
+                  id="post-tags"
+                  class="form-control"
+                  type="text"
+                  name="tags"
+                  [(ngModel)]="postDraft.tagsText"
+                  placeholder="software, automatizacion, ia"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label-required" for="post-short-description">
+                Descripcion corta
+              </label>
+              <textarea
+                id="post-short-description"
+                class="form-textarea"
+                rows="4"
+                name="shortDescription"
+                [(ngModel)]="postDraft.shortDescription"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label-required" for="post-content">Contenido</label>
+              <textarea
+                id="post-content"
+                class="form-textarea admin-editor"
+                rows="14"
+                name="content"
+                [(ngModel)]="postDraft.content"
+                placeholder="Admite HTML si necesitas estructura rica en el frontend."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-row form-row--top">
+              <div class="form-group">
+                <label class="form-label" for="post-image">Imagen destacada</label>
+                <input
+                  id="post-image"
+                  class="form-control"
+                  type="file"
+                  accept="image/*"
+                  (change)="handleImageSelection($event)"
+                />
+              </div>
+
+              <div class="form-group admin-upload-meta">
+                <span class="form-label">Estado de imagen</span>
+                <div class="dashboard-note">
+                  <span *ngIf="selectedImageFile">
+                    Nuevo archivo: {{ selectedImageFile.name }}
+                  </span>
+                  <span *ngIf="!selectedImageFile && postDraft.imageUrl">
+                    URL actual: {{ postDraft.imageUrl }}
+                  </span>
+                  <span *ngIf="!selectedImageFile && !postDraft.imageUrl">
+                    Sin imagen cargada.
+                  </span>
+                </div>
+                <button
+                  *ngIf="selectedImageFile"
+                  class="button button-secondary"
+                  type="button"
+                  (click)="clearSelectedImage()"
+                >
+                  Quitar nuevo archivo
+                </button>
+              </div>
+            </div>
+
+            <div class="spotlight-actions">
+              <button
+                class="button button-primary"
+                type="submit"
+                [disabled]="savingPost"
+              >
+                {{ savingPost ? "Guardando..." : postDraft.id ? "Actualizar post" : "Crear post" }}
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section id="posts" class="surface-card dashboard-section">
+          <div class="split-head split-head--compact admin-section-head">
+            <div>
+              <span class="eyebrow">Posts</span>
+              <h2>Listado editorial</h2>
+              <p>
+                Revisa publicaciones, entra en edicion y elimina contenido sin
+                salir del panel.
+              </p>
+            </div>
+          </div>
+
+          <div *ngIf="postsError" class="alert alert-error">
+            {{ postsError }}
+          </div>
+
+          <div *ngIf="loadingPosts" class="dashboard-empty">
+            Cargando posts desde la API...
+          </div>
+
+          <div *ngIf="!loadingPosts && !posts.length && !postsError" class="dashboard-empty">
+            Aun no hay posts creados en la API.
+          </div>
+
+          <div class="admin-card-list" *ngIf="!loadingPosts && posts.length">
+            <article class="admin-record" *ngFor="let post of posts">
+              <div class="admin-record__head">
+                <div>
+                  <span class="chip chip-soft">{{ post.slug }}</span>
+                  <h3>{{ post.title }}</h3>
+                </div>
+                <div class="admin-record__actions">
+                  <button class="button button-secondary" type="button" (click)="editPost(post)">
+                    Editar
+                  </button>
+                  <button
+                    class="button button-danger"
+                    type="button"
+                    [disabled]="deletingPostId === post.id"
+                    (click)="deletePost(post)"
+                  >
+                    {{ deletingPostId === post.id ? "Eliminando..." : "Borrar" }}
+                  </button>
+                </div>
+              </div>
+
+              <p>{{ post.shortDescription }}</p>
+
+              <div class="admin-record__meta">
+                <span>Autor: {{ post.author }}</span>
+                <span>Actualizado: {{ formatDate(post.updatedAt || post.createdAt) }}</span>
+              </div>
+
+              <div class="admin-tag-list" *ngIf="post.tags.length">
+                <span class="chip chip-soft" *ngFor="let tag of post.tags">{{ tag }}</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="scraper" class="surface-card dashboard-section">
+          <div class="split-head split-head--compact admin-section-head">
+            <div>
+              <span class="eyebrow">Scraper</span>
+              <h2>Crear y seguir jobs</h2>
+              <p>
+                Lanza busquedas desde el panel y refresca el estado del job sin
+                depender de herramientas externas.
+              </p>
+            </div>
+          </div>
+
+          <form class="contact-form__form" (ngSubmit)="createScraperJob()">
+            <div class="form-row form-row--top">
+              <div class="form-group">
+                <label class="form-label form-label-required" for="scraper-query">
+                  Consulta o URL
+                </label>
+                <input
+                  id="scraper-query"
+                  class="form-control"
+                  type="text"
+                  name="scraperQuery"
+                  [(ngModel)]="scraperQuery"
+                  placeholder="ej. abogados, Vigo o una URL concreta"
+                  required
+                />
+              </div>
+
+              <div class="form-group admin-upload-meta">
+                <span class="form-label">Accion</span>
+                <button
+                  class="button button-primary"
+                  type="submit"
+                  [disabled]="scraperLoading"
+                >
+                  {{ scraperLoading ? "Creando..." : "Crear job" }}
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div *ngIf="scraperSuccess" class="alert alert-success">
+            {{ scraperSuccess }}
+          </div>
+
+          <div *ngIf="scraperError" class="alert alert-error">
+            {{ scraperError }}
+          </div>
+
+          <div *ngIf="!jobs.length" class="dashboard-empty">
+            Aun no hay jobs creados en esta sesion.
+          </div>
+
+          <div class="admin-card-list" *ngIf="jobs.length">
+            <article class="admin-record" *ngFor="let job of jobs">
+              <div class="admin-record__head">
+                <div>
+                  <span class="chip chip-soft">{{ job.status }}</span>
+                  <h3>{{ job.query }}</h3>
+                </div>
+                <div class="admin-record__actions">
+                  <button
+                    class="button button-secondary"
+                    type="button"
+                    [disabled]="refreshingJobId === job.id"
+                    (click)="refreshJob(job)"
+                  >
+                    {{ refreshingJobId === job.id ? "Actualizando..." : "Refrescar" }}
+                  </button>
+                </div>
+              </div>
+
+              <div class="admin-record__meta">
+                <span>ID: {{ job.id }}</span>
+                <span>Creado: {{ formatDate(job.createdAt) }}</span>
+              </div>
+
+              <a
+                *ngIf="job.resultUrl"
+                class="text-link"
+                [href]="job.resultUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir resultado
+              </a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+# Monorepo root
+node_modules/
+.angular/
+.cache/
+dist/
+build/
+out/
+public/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log*
+firebase-debug.*.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+sendgrid.env
+token.json
+credentials.json
+
+# Archives / temp
+*.zip
+*.tar.gz
+*.tgz
+*.tmp
+*.bak
+
+# npm / yarn
+.npm
+.yarn-integrity
+
+# App-specific generated outputs
+apps/web/node_modules/
+apps/web/.angular/
+apps/web/dist/
+apps/web/functions/lib/
+apps/web/functions/angular-ssr/
+apps/web/server_output.txt
+apps/web/server_error.txt
+
+apps/api/node_modules/
+apps/api/dist/

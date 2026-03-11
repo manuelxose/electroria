@@ -1,0 +1,92 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: electroria-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-electroria}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-electroria}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ../apps/api
+      dockerfile: Dockerfile
+    container_name: electroria-api
+    restart: unless-stopped
+    command: sh -c "npm run migrate && npm run seed:blog && npm run start"
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/electroria}
+      CORS_ORIGIN: ${CORS_ORIGIN:-https://electroria.com}
+      UPLOADS_DIR: /app/uploads
+      ELECTRORIA_SITE_URL: ${WEB_PUBLIC_URL:-https://electroria.com}
+      ELECTRORIA_SITE_NAME: Electroria
+      CONTACT_NOTIFICATION_EMAIL: ${CONTACT_NOTIFICATION_EMAIL:-oficina@electroria.com}
+      TALKARIS_LEAD_WEBHOOK_SECRET: ${TALKARIS_LEAD_WEBHOOK_SECRET:-}
+      TALKARIS_LEAD_WEBHOOK_SECRET_HEADER: ${TALKARIS_LEAD_WEBHOOK_SECRET_HEADER:-x-talkaris-chat-secret}
+      AUCTORIO_WEBHOOK_SECRET: ${AUCTORIO_WEBHOOK_SECRET:-}
+      TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
+      TURNSTILE_VERIFY_URL: ${TURNSTILE_VERIFY_URL:-https://challenges.cloudflare.com/turnstile/v0/siteverify}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-}
+      RATE_LIMIT_CONTACT_WINDOW_MS: ${RATE_LIMIT_CONTACT_WINDOW_MS:-600000}
+      RATE_LIMIT_CONTACT_MAX: ${RATE_LIMIT_CONTACT_MAX:-8}
+      RATE_LIMIT_AUCTORIO_WINDOW_MS: ${RATE_LIMIT_AUCTORIO_WINDOW_MS:-60000}
+      RATE_LIMIT_AUCTORIO_MAX: ${RATE_LIMIT_AUCTORIO_MAX:-30}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - api_uploads:/app/uploads
+    expose:
+      - "3001"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3001/health >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile
+    container_name: electroria-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      API_INTERNAL_URL: ${API_INTERNAL_URL:-http://api:3001}
+      WEB_PUBLIC_URL: ${WEB_PUBLIC_URL:-https://electroria.com}
+      CANONICAL_HOST: ${CANONICAL_HOST:-electroria.com}
+      CHAT_WIDGET_ENABLED: ${CHAT_WIDGET_ENABLED:-true}
+      CHAT_WIDGET_BASE_URL: ${CHAT_WIDGET_BASE_URL:-https://talkaris.com/widget/}
+      CHAT_WIDGET_API_BASE_URL: ${CHAT_WIDGET_API_BASE_URL:-https://talkaris.com/api}
+      CHAT_WIDGET_SITE_KEY: ${CHAT_WIDGET_SITE_KEY:-electroria-public-site-key}
+      TURNSTILE_ENABLED: ${TURNSTILE_ENABLED:-false}
+      TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:-}
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:4000:4000"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:4000/health >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:
+  api_uploads:

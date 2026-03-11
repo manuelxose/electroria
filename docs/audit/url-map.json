@@ -1,0 +1,62 @@
+[
+  {
+    "original": "/",
+    "final": "/",
+    "action": "200",
+    "note": "Home migrada a Angular SSR"
+  },
+  {
+    "original": "/contacto/",
+    "final": "/contacto",
+    "action": "200",
+    "note": "Contacto y presupuesto con formulario propio"
+  },
+  {
+    "original": "/blog/",
+    "final": "/blog",
+    "action": "200",
+    "note": "Listado de blog en Angular SSR"
+  },
+  {
+    "original": "/instalaciones-electricas/",
+    "final": "/servicios/instalaciones-electricas",
+    "action": "301",
+    "note": "Detalle de servicio"
+  },
+  {
+    "original": "/diseno-de-cuadros-electricos/",
+    "final": "/servicios",
+    "action": "301",
+    "note": "Página legacy canónica rota"
+  },
+  {
+    "original": "/cuadros-electricos-galicia/",
+    "final": "/empresa",
+    "action": "301",
+    "note": "Página de empresa/nosotros normalizada"
+  },
+  {
+    "original": "/instalacion-electrica-en-viviendas-guia-completa/",
+    "final": "/blog/instalacion-electrica-en-viviendas-guia-completa",
+    "action": "200",
+    "note": "Post preservado"
+  },
+  {
+    "original": "/cuadros-electricos-funcionamiento-y-componentes/",
+    "final": "/blog/cuadros-electricos-funcionamiento-y-componentes",
+    "action": "200",
+    "note": "Post preservado"
+  },
+  {
+    "original": "/cuadros-electricos-regulaciones-y-normativa/",
+    "final": "/blog/cuadros-electricos-regulaciones-y-normativa",
+    "action": "200",
+    "note": "Post preservado"
+  },
+  {
+    "original": "/category/cuadros-electricos/",
+    "final": "/blog/categoria/cuadros-electricos",
+    "action": "301",
+    "note": "Categoría migrada"
+  }
+]

@@ -1,0 +1,31 @@
+original_url,final_url,http_status,title,h1,action,redirect_required,observations,manual_review
+/,/,200,Electroria | Instalaciones eléctricas en Vigo y Galicia,Instalaciones eléctricas profesionales en Galicia,Render SSR,No,Home corporativa migrada,No
+/contacto/,/contacto,200,Contacto y presupuesto | Electroria,Contacto y presupuesto,Render SSR,No,Formulario corporativo propio,No
+/blog/,/blog,200,Blog técnico y comercial sobre instalaciones eléctricas,Blog de Electroria,Render SSR,No,Listado SSR con posts legacy y editoriales,No
+/instalaciones-electricas/,/servicios/instalaciones-electricas,301,Instalaciones eléctricas completas,Instalaciones eléctricas completas,Redirección 301,Sí,Detalle de servicio normalizado,No
+/diseno-de-cuadros-electricos/,/servicios,301,Servicios eléctricos en Galicia,Servicios eléctricos en Galicia,Redirección 301,Sí,Canonical legacy roto corregido,No
+/cuadros-electricos-galicia/,/empresa,301,Empresa instaladora en Vigo y Galicia,Empresa instaladora con base en Vigo,Redirección 301,Sí,URL corporativa reubicada,No
+/instalacion-electrica-en-viviendas-guia-completa/,/blog/instalacion-electrica-en-viviendas-guia-completa,301,Instalación eléctrica en viviendas: Guía completa,Instalación eléctrica en viviendas: Guía completa,Redirección 301,Sí,Post preservado con slug estable,No
+/cuadros-electricos-funcionamiento-y-componentes/,/blog/cuadros-electricos-funcionamiento-y-componentes,301,Los cuadros eléctricos: componentes, funcionamiento y tipos,Los cuadros eléctricos: componentes, funcionamiento y tipos,Redirección 301,Sí,Post preservado con slug estable,No
+/cuadros-electricos-regulaciones-y-normativa/,/blog/cuadros-electricos-regulaciones-y-normativa,301,Cuadros Eléctricos: Regulaciones y Normativa,Cuadros Eléctricos: Regulaciones y Normativa,Redirección 301,Sí,Post preservado con slug estable,No
+/category/cuadros-electricos/,/blog/categoria/cuadros-electricos,301,Cuadros eléctricos | Blog,Cuadros eléctricos,Redirección 301,Sí,Categoría legacy migrada,No
+/mantenimiento/,/servicios/mantenimiento-preventivo,301,Mantenimiento preventivo eléctrico,Mantenimiento preventivo,Redirección 301,Sí,Enlace roto en legacy corregido,No
+/automatizacion-industrial/,/servicios/automatizacion-industrial,301,Automatización industrial eléctrica,Automatización industrial,Redirección 301,Sí,Enlace roto en legacy corregido,No
+/eficiencia-energetica/,/servicios/eficiencia-energetica,301,Eficiencia energética eléctrica,Eficiencia energética,Redirección 301,Sí,Enlace roto en legacy corregido,No
+/emergencias-24-7/,/servicios/emergencias-24-7,301,Emergencias eléctricas 24/7,Emergencias 24/7,Redirección 301,Sí,Enlace roto en legacy corregido,No
+/nosotros/,/empresa,301,Empresa instaladora en Vigo y Galicia,Empresa instaladora con base en Vigo,Redirección 301,Sí,Nomenclatura unificada,No
+/proyectos/,/proyectos,301,Proyectos eléctricos y casos,Proyectos y casos representativos,Redirección 301,Sí,Se crea página consistente,No
+/certificaciones/,/certificaciones,301,Certificaciones y garantías,Certificaciones y garantías,Redirección 301,Sí,Se crea página consistente,No
+/zonas-servicio/,/zonas,301,Cobertura eléctrica en Galicia,Cobertura en Vigo y Galicia,Redirección 301,Sí,Se crea página consistente,No
+/aviso-legal/,/aviso-legal,301,Aviso legal,Aviso legal,Redirección 301,Sí,La página no existía en legacy,No
+/politica-privacidad/,/privacidad,301,Privacidad,Privacidad,Redirección 301,Sí,La página no existía en legacy,No
+/cookies/,/cookies,301,Cookies,Cookies,Redirección 301,Sí,La página no existía en legacy,No
+/area-cliente,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/clientes/cuenta,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/clientes/facturas,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/clientes/consumo,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/servicios/suministro,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/servicios/tarifas,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/servicios/renovable,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/sostenibilidad,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
+/empleo,,410,,,Retirada controlada,Sí,Ruta fantasma sin continuidad,No
