@@ -2,21 +2,27 @@
 
 ## Build
 ```bash
-npm run build:types
-npm run build:api
-npm run build:web
+cd /var/www/electroria
+npm run build
 ```
 
-## Desarrollo local
+## Servicios del VPS
 ```bash
-npm run dev:deps:up
-npm run dev:api
-npm run dev:web
+sudo systemctl status electroria-api.service
+sudo systemctl status electroria-web.service
+sudo journalctl -u electroria-api.service -f
+sudo journalctl -u electroria-web.service -f
 ```
 
-Dependencias locales:
-- PostgreSQL en `127.0.0.1:5432`
-- Mailpit en `127.0.0.1:1025` y UI `http://127.0.0.1:8025`
+Puertos esperados:
+- API: `127.0.0.1:3201`
+- SSR: `127.0.0.1:4200`
+
+## Base de datos
+- Backup: `bash infra/scripts/backup-postgres.sh`
+- Restore: `bash infra/scripts/restore-postgres.sh /ruta/backup.sql.gz`
+- Migraciones manuales: `set -a; source /etc/electroria/api.env; set +a; node apps/api/dist/scripts/migrate.js`
+- Seed blog legacy: `set -a; source /etc/electroria/api.env; set +a; node apps/api/dist/scripts/seed-legacy-blog.js`
 
 ## Blog editorial
 - Seed inicial legacy: `npm run seed:blog`
@@ -33,28 +39,19 @@ Dependencias locales:
   - mismo endpoint
   - header `x-talkaris-chat-secret`
 
-## Logs
-```bash
-docker compose --env-file infra/.env -f infra/docker-compose.yml logs -f web
-docker compose --env-file infra/.env -f infra/docker-compose.yml logs -f api
-docker compose --env-file infra/.env -f infra/docker-compose.yml logs -f postgres
-```
-
-## Backups
-- Script: `infra/scripts/backup-postgres.sh`
-- Retencion por defecto: 14 dias
-- Restauracion: `infra/scripts/restore-postgres.sh`
-
 ## Datos visibles editables
 - contenido corporativo: `apps/web/src/app/site/content/site-content.ts`
 - posts legacy migrados: `apps/web/src/app/site/content/generated/legacy-blog-posts.json`
 - mapa de URLs: `docs/audit/url-map-master.csv`
-- variables de integracion: `infra/.env`
+- env API: `/etc/electroria/api.env`
+- env web: `/etc/electroria/web.env`
 
 ## Checklist rapido antes de publicar
-1. Ejecutar `npm run build:api` y `npm run build:web`.
-2. Verificar `curl https://electroria.com/health`.
-3. Verificar `curl https://electroria.com/api/v1/health`.
-4. Probar un formulario real.
-5. Probar una publicacion firmada desde Auctorio.
-6. Revisar redirects `301` y rutas `410`.
+1. Ejecutar `npm run build`.
+2. Verificar `curl http://127.0.0.1:3201/health`.
+3. Verificar `curl http://127.0.0.1:4200/health`.
+4. Verificar `curl https://electroria.com/health`.
+5. Verificar `curl https://electroria.com/api/v1/health`.
+6. Probar un formulario real.
+7. Probar una publicacion firmada desde Auctorio.
+8. Revisar redirects `301` y rutas `410`.

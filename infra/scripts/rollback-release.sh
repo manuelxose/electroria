@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ENV_FILE="${ROOT_DIR}/.env"
+sudo systemctl restart electroria-api.service
+sudo systemctl restart electroria-web.service
+sudo systemctl reload nginx
 
-docker compose --env-file "${ENV_FILE}" -f "${ROOT_DIR}/docker-compose.yml" down
-docker compose --env-file "${ENV_FILE}" -f "${ROOT_DIR}/docker-compose.yml" up -d
-
-echo "Rollback/restart executed. Verify containers and health endpoints."
+echo "Services restarted. Verify health endpoints and journalctl output."

@@ -183,9 +183,12 @@ Decisiones clave:
 - Operativa diaria:
   - `docs/OPERATIONS.md`
 - Infra:
-  - `infra/docker-compose.yml`
+  - `infra/env/api.env.example`
+  - `infra/env/web.env.example`
+  - `infra/nginx/bootstrap-http.conf`
   - `infra/nginx/default.conf`
-  - `infra/systemd/electroria-stack.service`
+  - `infra/systemd/electroria-api.service`
+  - `infra/systemd/electroria-web.service`
   - `infra/scripts/backup-postgres.sh`
   - `infra/scripts/restore-postgres.sh`
   - `infra/scripts/rollback-release.sh`

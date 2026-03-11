@@ -1,5 +1,4 @@
 export type PublicRuntimeConfig = {
-  googleClientId?: string;
   chatWidgetEnabled?: boolean;
   chatWidgetBaseUrl?: string;
   chatWidgetApiBaseUrl?: string;

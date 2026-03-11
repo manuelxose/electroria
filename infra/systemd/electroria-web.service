@@ -1,0 +1,17 @@
+[Unit]
+Description=Electroria Web SSR
+After=network.target electroria-api.service
+Wants=electroria-api.service
+
+[Service]
+Type=simple
+User=electroria
+Group=electroria
+WorkingDirectory=/var/www/electroria/apps/web
+EnvironmentFile=/etc/electroria/web.env
+ExecStart=/usr/bin/node /var/www/electroria/apps/web/dist/server/server.mjs
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

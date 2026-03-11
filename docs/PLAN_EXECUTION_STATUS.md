@@ -1,6 +1,6 @@
-# Tecnoria Plan Maestro - Estado de Ejecucion
+# Electroria Plan Maestro - Estado de Ejecucion
 
-Fecha de corte: 2026-03-10
+Fecha de corte: 2026-03-11
 
 ## Estado actual
 
@@ -10,24 +10,32 @@ Fecha de corte: 2026-03-10
   - `packages/shared-types`
   - `infra`
   - `docs`
-- Web Angular 20 SSR y API Express sobre PostgreSQL operativas.
-- Chatbot desacoplado desplegado bajo `/chat-api/*` y `/chat-widget/*`.
+- Web Angular 20 SSR y API Express sobre PostgreSQL preparadas para despliegue host-level.
+- Integraciones externas activas:
+  - Talkaris como sink de leads
+  - Auctorio como emisor del webhook editorial
 - Uploads servidos en `/uploads/*`.
-- Login por password y Google habilitados desde la API propia.
+- Superficie publica reducida a sitio corporativo, blog, contacto y webhooks.
 
 ## Validaciones cerradas
 
 - `npm run -w apps/web build`
 - `npm run -w apps/api build`
 - `npm run build`
-- SSR smoke en `/`, `/servicios`, `/auth-login` y `/dashboard`
+- SSR smoke en `/`, `/servicios`, `/blog` y `/contacto`
 - Contacto corporativo persistiendo en PostgreSQL
-- Chatbot con ingesta completada y evaluacion en verde
-- Certificado de origen Cloudflare instalado en el VPS
-- DNS de `tecnoriasl.com` y `www.tecnoriasl.com` apuntando al origen `109.123.248.164`
-- Cloudflare en modo `Full (strict)` con cache purgada
-- Overrides locales de `hosts` retirados y worker reingestando contra el dominio publico real
+- Webhook editorial `/api/v1/auctorio/publish` disponible
+- Configuracion de `nginx + systemd + PostgreSQL` definida para el VPS
+- Cloudflare preparado para corte de `electroria.com` y `www.electroria.com`
+
+## Legacy eliminado
+
+- rutas legacy de autenticacion
+- backoffice interno heredado
+- repositorios y contratos de auth/scraper del frontend
+- runtime `googleClientId`
+- tablas legacy `users`, `access_requests`, `password_reset_tokens`, `scraper_jobs`
 
 ## Pendiente operativo
 
-1. Corregir la credencial SMTP real de Gmail Workspace para `oficina@tecnoriasl.com` o proporcionar un relay valido.
+1. Mantener sincronizado el secreto de `AUCTORIO_WEBHOOK_SECRET` en el emisor externo si cambia.

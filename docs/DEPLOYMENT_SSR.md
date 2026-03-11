@@ -1,87 +1,142 @@
 # Deploy SSR Electroria en VPS
 
 ## Topologia final
-- `web`: Angular 20 SSR en `127.0.0.1:4000`
-- `api`: Express + PostgreSQL en red privada Docker
-- `postgres`: persistencia de leads y blog
-- `nginx` host-level: proxy inverso publico `electroria.com` y `www.electroria.com`
-- `Talkaris`: servicio externo consumido por widget white-label
-- `Auctorio`: servicio externo que publica via webhook firmado
+- `web`: Angular SSR en `127.0.0.1:4200`
+- `api`: Express + PostgreSQL en `127.0.0.1:3201`
+- `postgres`: servicio local del host
+- `nginx`: proxy inverso publico para `electroria.com` y `www.electroria.com`
+- `systemd`: `electroria-api.service` y `electroria-web.service`
+- `Cloudflare`: proxy de `electroria.com` y `www.electroria.com`, SSL `Full (strict)`
 
 ## Requisitos
 - Ubuntu 24.04 LTS
-- Docker Engine + Docker Compose plugin
-- Nginx en host
-- Certbot o equivalente para TLS
-- DNS `A` de `electroria.com` y `www.electroria.com` apuntando al VPS
+- Node.js 22
+- PostgreSQL local en el host
+- Nginx en el host
+- Certbot
+- DNS de `electroria.com` y `www.electroria.com` gestionados en Cloudflare
+
+## Directorios persistentes
+- `/etc/electroria/api.env`
+- `/etc/electroria/web.env`
+- `/var/lib/electroria/uploads`
+- `/var/www/letsencrypt`
 
 ## Variables de entorno
-Usa `infra/.env.example` como base para `infra/.env`.
+Usa estas plantillas como base:
+- `infra/env/api.env.example`
+- `infra/env/web.env.example`
 
-Minimas obligatorias:
-- `WEB_PUBLIC_URL`
-- `CORS_ORIGIN`
+Obligatorias en `api.env`:
+- `NODE_ENV=production`
+- `PORT=3201`
 - `DATABASE_URL`
-- `POSTGRES_DB`
-- `POSTGRES_USER`
-- `POSTGRES_PASSWORD`
+- `CORS_ORIGIN=https://electroria.com`
+- `UPLOADS_DIR=/var/lib/electroria/uploads`
+- `ELECTRORIA_SITE_URL=https://electroria.com`
 - `CONTACT_NOTIFICATION_EMAIL`
 - `TALKARIS_LEAD_WEBHOOK_SECRET`
 - `AUCTORIO_WEBHOOK_SECRET`
 
-Opcionales:
-- `SMTP_*` para notificaciones por email
-- `TURNSTILE_ENABLED`, `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`
-- `CHAT_WIDGET_*` si cambian host, API o site key de Talkaris
+Obligatorias en `web.env`:
+- `NODE_ENV=production`
+- `PORT=4200`
+- `API_INTERNAL_URL=http://127.0.0.1:3201`
+- `CANONICAL_HOST=electroria.com`
 
-## Arranque inicial
+## Provision inicial
 ```bash
-cd /var/www/electroria
-cp infra/.env.example infra/.env
-docker compose --env-file infra/.env -f infra/docker-compose.yml up -d --build
+sudo useradd --system --home /var/lib/electroria --shell /usr/sbin/nologin electroria || true
+sudo mkdir -p /etc/electroria /var/lib/electroria/uploads /var/www/letsencrypt
+sudo chown -R electroria:electroria /var/lib/electroria
 ```
 
-La API ejecuta automaticamente:
+## Build
+```bash
+cd /var/www/electroria
+npm ci
+npm run build
+```
+
+## PostgreSQL
+Crear rol y base dedicados en el host:
+
+```bash
+sudo -u postgres psql
+CREATE ROLE electroria LOGIN PASSWORD 'change-me';
+CREATE DATABASE electroria OWNER electroria;
+\q
+```
+
+## systemd
+Instala las unidades del repo:
+
+```bash
+sudo cp infra/systemd/electroria-api.service /etc/systemd/system/
+sudo cp infra/systemd/electroria-web.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now electroria-api.service electroria-web.service
+```
+
+La API ejecuta antes de arrancar:
 - migraciones SQL
 - seed idempotente del blog legacy
-- arranque del servidor Express
 
-## Nginx host
-Instala `infra/nginx/default.conf` como sitio en `/etc/nginx/sites-available/electroria.conf` y enlazalo en `sites-enabled`.
+## Nginx
+### Bootstrap HTTP para emitir Let’s Encrypt
+1. Instala `infra/nginx/bootstrap-http.conf` en `/etc/nginx/sites-available/electroria.conf`.
+2. Enlaza el sitio y recarga Nginx.
 
-Reemplaza si hace falta:
-- rutas de certificado LetsEncrypt
-- `server_name`
-
-Despues:
 ```bash
+sudo cp infra/nginx/bootstrap-http.conf /etc/nginx/sites-available/electroria.conf
+sudo ln -sfn /etc/nginx/sites-available/electroria.conf /etc/nginx/sites-enabled/electroria.conf
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-## TLS
-Ejemplo con Certbot:
+### Emitir certificado
+Tras apuntar `electroria.com` y `www.electroria.com` al VPS:
+
 ```bash
-sudo certbot --nginx -d electroria.com -d www.electroria.com
+sudo certbot certonly \
+  --webroot \
+  -w /var/www/letsencrypt \
+  -d electroria.com \
+  -d www.electroria.com
 ```
 
-## systemd
-Servicio de stack preparado en:
-- `infra/systemd/electroria-stack.service`
-
-Instalacion:
+### Configuracion final HTTPS
 ```bash
-sudo cp infra/systemd/electroria-stack.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now electroria-stack.service
+sudo cp infra/nginx/default.conf /etc/nginx/sites-available/electroria.conf
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+## Cloudflare cutover
+El script del repo usa el token compartido del VPS en `~/.config/cloudflare/api.env`.
+
+Secuencia recomendada:
+1. Cambiar `electroria.com` y `www.electroria.com` al VPS con proxy desactivado temporalmente.
+2. Emitir Let’s Encrypt.
+3. Activar proxy para ambos hostnames.
+4. Dejar el modo SSL en `strict`.
+5. Purgar caché.
+
+El corte final puede ejecutarse con:
+
+```bash
+CF_ZONE_NAME=electroria.com CF_ORIGIN_IPV4=109.123.248.164 bash infra/cloudflare-cutover.sh
 ```
 
 ## Smoke tests
 ```bash
-curl -I https://electroria.com/
-curl -I https://electroria.com/servicios
-curl -I https://electroria.com/blog
-curl -I https://electroria.com/contacto
+curl http://127.0.0.1:3201/health
+curl http://127.0.0.1:4200/health
+curl -H 'Host: electroria.com' http://127.0.0.1/
+curl https://electroria.com/
+curl https://electroria.com/servicios
+curl https://electroria.com/blog
+curl https://electroria.com/contacto
 curl https://electroria.com/health
 curl https://electroria.com/api/v1/health
 curl https://electroria.com/sitemap.xml
@@ -89,9 +144,8 @@ curl https://electroria.com/robots.txt
 ```
 
 ## Operaciones post-deploy
-- Actualizar: `docker compose --env-file infra/.env -f infra/docker-compose.yml up -d --build`
-- Logs web: `docker compose --env-file infra/.env -f infra/docker-compose.yml logs -f web`
-- Logs api: `docker compose --env-file infra/.env -f infra/docker-compose.yml logs -f api`
+- Logs API: `journalctl -u electroria-api.service -f`
+- Logs web: `journalctl -u electroria-web.service -f`
+- Reinicio: `sudo systemctl restart electroria-api.service electroria-web.service`
 - Backup: `bash infra/scripts/backup-postgres.sh`
 - Restore: `bash infra/scripts/restore-postgres.sh /ruta/backup.sql.gz`
-- Rollback rapido: `bash infra/scripts/rollback-release.sh`

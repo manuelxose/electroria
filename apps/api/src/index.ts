@@ -70,10 +70,11 @@ async function ensureDatabaseConnection(): Promise<void> {
 
 async function start(): Promise<void> {
   await ensureDatabaseConnection();
+  const host = process.env["HOST"] || "127.0.0.1";
 
-  app.listen(env.PORT, () => {
+  app.listen(env.PORT, host, () => {
     // eslint-disable-next-line no-console
-    console.log(`API listening on http://localhost:${env.PORT}`);
+    console.log(`API listening on http://${host}:${env.PORT}`);
   });
 }
 

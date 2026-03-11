@@ -1,0 +1,19 @@
+[Unit]
+Description=Electroria API
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=electroria
+Group=electroria
+WorkingDirectory=/var/www/electroria/apps/api
+EnvironmentFile=/etc/electroria/api.env
+ExecStartPre=/usr/bin/node /var/www/electroria/apps/api/dist/scripts/migrate.js
+ExecStartPre=/usr/bin/node /var/www/electroria/apps/api/dist/scripts/seed-legacy-blog.js
+ExecStart=/usr/bin/node /var/www/electroria/apps/api/dist/index.js
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
