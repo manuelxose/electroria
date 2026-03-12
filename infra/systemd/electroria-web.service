@@ -9,7 +9,7 @@ User=electroria
 Group=electroria
 WorkingDirectory=/var/www/electroria/apps/web
 EnvironmentFile=/etc/electroria/web.env
-ExecStart=/usr/bin/node /var/www/electroria/apps/web/dist/server/server.mjs
+ExecStart=/var/www/bin/run-release-entry.sh /var/www/electroria/apps/web/releases/current/server/server.mjs
 Restart=always
 RestartSec=2
 

@@ -266,22 +266,22 @@ export const coverageHighlights: CoverageEntry[] = [
 
 export const processSteps: ProcessStep[] = [
   {
-    title: "1. Revisión técnica y toma de datos",
+    title: "Revisión técnica y toma de datos",
     description:
       "Aterrizamos uso, potencia, normativa, urgencia y condiciones de la instalación antes de definir propuesta.",
   },
   {
-    title: "2. Propuesta, alcance y presupuesto",
+    title: "Propuesta, alcance y presupuesto",
     description:
       "Planteamos solución, materiales, plazos y documentación necesaria sin dejar ambigüedad operativa.",
   },
   {
-    title: "3. Ejecución coordinada",
+    title: "Ejecución coordinada",
     description:
       "Trabajamos por fases para reducir impacto en la actividad y asegurar seguridad durante la intervención.",
   },
   {
-    title: "4. Verificación, certificación y entrega",
+    title: "Verificación, certificación y entrega",
     description:
       "Probamos, etiquetamos, documentamos y cerramos la instalación con la trazabilidad que exige explotación real.",
   },
@@ -331,6 +331,21 @@ export const homeFaqs: FaqEntry[] = [
     question: "¿Ofrecéis mantenimiento preventivo?",
     answer:
       "Sí. Diseñamos revisiones periódicas para viviendas, locales y entornos industriales donde la continuidad eléctrica es crítica.",
+  },
+  {
+    question: "¿Cuánto cuesta una instalación eléctrica en Vigo?",
+    answer:
+      "El coste depende del alcance, la potencia necesaria, el tipo de inmueble y el estado de la instalación existente. Tras una revisión inicial sin compromiso, preparamos un presupuesto detallado y cerrado.",
+  },
+  {
+    question: "¿Hacéis reformas eléctricas parciales o solo proyectos completos?",
+    answer:
+      "Hacemos ambas cosas. Podemos intervenir en un cuadro, una zona concreta o una acometida sin necesidad de abordar toda la instalación. El alcance se define siempre antes de ejecutar.",
+  },
+  {
+    question: "¿Qué diferencia hay entre mantenimiento preventivo y correctivo?",
+    answer:
+      "El preventivo son revisiones periódicas planificadas para detectar problemas antes de que fallen. El correctivo es la reparación cuando ya ha ocurrido la avería. Ofrecemos ambos y podemos combinarlos en un plan de servicio.",
   },
 ];
 
@@ -739,9 +754,9 @@ export const infoPages: Record<string, InfoPageEntry> = {
           "Vigo como base de respuesta prioritaria y Galicia para proyectos planificados o mantenimientos acordados.",
       },
       {
-        title: "Soporte apoyado por ecosistema digital propio",
+        title: "Atención directa y trato claro",
         description:
-          "La nueva web integra atención asistida y una capa editorial profesional para mejorar captación y operación interna.",
+          "Sin intermediarios. El mismo equipo técnico que evalúa el trabajo es el que lo ejecuta y lo cierra con documentación.",
       },
     ],
     sections: [
@@ -765,10 +780,15 @@ export const infoPages: Record<string, InfoPageEntry> = {
         ],
       },
       {
-        title: "Base digital de la nueva etapa",
+        title: "Compromiso con la calidad de ejecución",
         paragraphs: [
-          "Electroria ya no depende de una web WordPress frágil ni de páginas rotas. La nueva base Angular SSR organiza mejor el contenido, el SEO y la captación.",
-          "La atención comercial incorpora un asistente white-label operado por Talkaris, mientras el blog queda preparado para publicación editorial mediante Auctorio sin exponer dependencias internas al usuario final.",
+          "Cada trabajo se cierra con la instalación probada, etiquetada y documentada. No entregamos trabajos a medias ni dejamos puntos sin resolver sin comunicarlo.",
+          "La combinación de criterio técnico, materiales contrastados y seguimiento postventa es lo que marca la diferencia entre un trabajo que dura y uno que genera problemas recurrentes.",
+        ],
+        bullets: [
+          "Materiales de primeras marcas trazables",
+          "Cierre documental en cada intervención",
+          "Acceso al equipo técnico tras la instalación si se necesita",
         ],
       },
     ],
@@ -907,12 +927,6 @@ export const infoPages: Record<string, InfoPageEntry> = {
           "Certificados y documentación según alcance acordado",
         ],
       },
-      {
-        title: "Qué queda pendiente de validación manual",
-        paragraphs: [
-          "Los datos registrales completos de la sociedad y cualquier dato legal corporativo no visible hoy en la web legacy se marcarán antes de publicación definitiva.",
-        ],
-      },
     ],
     ctaLabel: "Solicitar revisión técnica",
     ctaPath: "/contacto",
@@ -923,7 +937,7 @@ export const infoPages: Record<string, InfoPageEntry> = {
     eyebrow: "Legal",
     title: "Aviso legal",
     intro:
-      "Esta página sustituye a las rutas legales inexistentes del sitio legacy y queda preparada para completar los datos registrales definitivos antes de publicación final.",
+      "Esta página recoge las condiciones legales de uso del sitio web de Electroria y la identificación del titular responsable.",
     seo: {
       title: "Aviso legal",
       description:
@@ -937,7 +951,7 @@ export const infoPages: Record<string, InfoPageEntry> = {
           `Titular visible: ${SITE_LEGAL_NAME}.`,
           `Dirección de contacto: ${SITE_ADDRESS}.`,
           `Email de contacto: ${SITE_EMAIL}. Teléfonos: ${SITE_PHONE_LABEL} y ${SITE_PHONE_ALT_LABEL}.`,
-          "Datos registrales completos y NIF: pendiente de validación manual antes de la publicación definitiva.",
+          "Datos registrales e identificación fiscal disponibles en solicitud formal a través de los canales de contacto indicados en esta página.",
         ],
       },
       {
@@ -964,7 +978,7 @@ export const infoPages: Record<string, InfoPageEntry> = {
     eyebrow: "Privacidad",
     title: "Política de privacidad",
     intro:
-      "La nueva base web incorpora formularios propios y endpoints dedicados. Esta política resume el tratamiento aplicado a las solicitudes de contacto y presupuesto.",
+      "Esta política describe el tratamiento de los datos personales facilitados a través de los formularios de contacto y solicitudes comerciales de Electroria.",
     seo: {
       title: "Política de privacidad",
       description:
@@ -1010,7 +1024,7 @@ export const infoPages: Record<string, InfoPageEntry> = {
     eyebrow: "Cookies",
     title: "Política de cookies",
     intro:
-      "La nueva web reduce dependencias innecesarias y queda preparada para operar con el mínimo de cookies técnicas imprescindibles.",
+      "Esta página describe el uso de cookies en el sitio web de Electroria y cómo puede gestionar sus preferencias de privacidad.",
     seo: {
       title: "Política de cookies",
       description:

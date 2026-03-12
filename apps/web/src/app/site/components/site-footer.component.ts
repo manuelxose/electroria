@@ -28,14 +28,14 @@ import {
             <span class="brand-mark">ER</span>
             <span class="brand-copy">
               <strong>{{ siteName }}</strong>
-              <small>Instalaciones electricas y cuadros a medida</small>
+              <small>Instalaciones eléctricas y cuadros a medida</small>
             </span>
           </a>
           <p>{{ tagline }}</p>
         </div>
 
         <div>
-          <h3>Navegacion</h3>
+          <h3>Navegación</h3>
           <ul class="footer-list">
             <li *ngFor="let item of quickLinks">
               <a [routerLink]="item.path">{{ item.label }}</a>
@@ -68,7 +68,7 @@ import {
       </div>
 
       <div class="site-container footer-bar">
-        <p>{{ siteName }} {{ year }}. Base corporativa en Angular SSR para captar, informar y convertir demanda real en Galicia.</p>
+        <p>© {{ year }} {{ siteName }}. Instalaciones eléctricas en Vigo y Galicia.</p>
         <div class="footer-meta">
           <a *ngFor="let item of legalNav" [routerLink]="item.path">{{ item.label }}</a>
         </div>

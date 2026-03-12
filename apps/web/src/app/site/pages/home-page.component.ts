@@ -24,7 +24,7 @@ import { SeoService } from "../services/seo.service";
       <div class="site-container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">Electroria · Vigo · Galicia</span>
-          <h1>Instalaciones eléctricas profesionales para viviendas, comercio e industria.</h1>
+          <h1>Instalaciones eléctricas en Vigo con rigor técnico y documentación completa.</h1>
           <p class="lead">
             Diseñamos, ejecutamos y mantenemos instalaciones eléctricas con
             cuadros a medida, documentación trazable y respuesta técnica cuando
@@ -32,7 +32,7 @@ import { SeoService } from "../services/seo.service";
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" routerLink="/contacto">Solicitar presupuesto gratis</a>
+            <a class="button button-primary" routerLink="/contacto">Solicitar presupuesto</a>
             <a class="button button-secondary" routerLink="/servicios">Ver servicios</a>
           </div>
 
@@ -45,29 +45,28 @@ import { SeoService } from "../services/seo.service";
         </div>
 
         <aside class="hero-panel surface-card surface-card--contrast">
-          <span class="panel-label">Experiencia +15 años</span>
+          <span class="panel-label">Instaladores autorizados · Galicia</span>
           <h2>Seguridad, continuidad y cumplimiento técnico en cada intervención.</h2>
           <p>
             Cubrimos instalaciones completas, cuadros eléctricos a medida,
-            mantenimiento preventivo, automatización y emergencias 24/7 con
-            instaladores autorizados.
+            mantenimiento preventivo, automatización y emergencias 24/7.
           </p>
-
-          <div class="panel-stack">
-            <div class="mini-metric" *ngFor="let item of metrics">
-              <strong>{{ item.value }}</strong> · {{ item.label }}
-            </div>
+          <div class="hero-panel-certs">
+            <span class="cert-badge">REBT</span>
+            <span class="cert-badge">24/7</span>
+            <span class="cert-badge">+500 proyectos</span>
+            <span class="cert-badge">2 años garantía</span>
           </div>
         </aside>
       </div>
     </section>
 
-    <section class="section section-accent">
+    <section class="section section-metrics">
       <div class="site-container card-grid card-grid--four">
-        <article class="surface-card" *ngFor="let item of metrics">
-          <span class="chip chip-soft">{{ item.value }}</span>
-          <h3>{{ item.label }}</h3>
-          <p>{{ item.detail }}</p>
+        <article class="metric-card" *ngFor="let item of metrics">
+          <strong class="metric-value">{{ item.value }}</strong>
+          <span class="metric-label">{{ item.label }}</span>
+          <p class="metric-detail">{{ item.detail }}</p>
         </article>
       </div>
     </section>
@@ -75,11 +74,10 @@ import { SeoService } from "../services/seo.service";
     <section class="section">
       <div class="site-container section-head">
         <span class="eyebrow">Servicios</span>
-        <h2>Seis líneas de servicio conectadas con la necesidad real del cliente.</h2>
+        <h2>Seis líneas de servicio para cada necesidad técnica.</h2>
         <p>
-          Reorganizamos instalaciones, fabricamos cuadros, reducimos incidencias
-          y damos cobertura técnica donde la seguridad o la continuidad sí son
-          importantes.
+          Instalaciones completas, cuadros a medida, mantenimiento, automatización,
+          eficiencia y urgencias 24/7 para vivienda, comercio e industria en Galicia.
         </p>
       </div>
 
@@ -92,7 +90,7 @@ import { SeoService } from "../services/seo.service";
             <li *ngFor="let item of service.highlights">{{ item }}</li>
           </ul>
           <div class="service-card__footer">
-            <a class="text-link" [routerLink]="service.seo.path">Explorar servicio</a>
+            <a class="button button-secondary" [routerLink]="service.seo.path">Ver detalle</a>
           </div>
         </article>
       </div>
@@ -100,13 +98,8 @@ import { SeoService } from "../services/seo.service";
 
     <section class="section section-dark">
       <div class="site-container section-head section-head--light">
-        <span class="eyebrow">Ventajas competitivas</span>
-        <h2>Una base eléctrica fiable también necesita criterio de operación.</h2>
-        <p>
-          La nueva web y el nuevo proceso comercial están preparados para captar
-          mejor, responder con más contexto y sostener la relación técnica
-          después de la instalación.
-        </p>
+        <span class="eyebrow">Por qué Electroria</span>
+        <h2>Cuatro principios que definen cómo preparamos, ejecutamos y cerramos cada proyecto.</h2>
       </div>
 
       <div class="site-container card-grid card-grid--four">
@@ -117,27 +110,11 @@ import { SeoService } from "../services/seo.service";
       </div>
     </section>
 
-    <section class="section">
-      <div class="site-container split-head">
-        <div>
-          <span class="eyebrow">Cobertura</span>
-          <h2>Base operativa en Vigo con capacidad para proyectos en Galicia.</h2>
-        </div>
-        <a class="button button-secondary" routerLink="/zonas">Ver zonas de trabajo</a>
-      </div>
-
-      <div class="site-container card-grid card-grid--three">
-        <article class="surface-card" *ngFor="let item of coverage">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
-        </article>
-      </div>
-    </section>
-
     <section class="section section-accent">
       <div class="site-container section-head">
         <span class="eyebrow">Proceso de trabajo</span>
-        <h2>Del diagnóstico inicial a la entrega técnica sin zonas grises.</h2>
+        <h2>Del primer contacto a la entrega técnica sin zonas grises.</h2>
+        <p>Un proceso claro que minimiza sorpresas y maximiza la trazabilidad del trabajo realizado.</p>
       </div>
 
       <div class="site-container timeline-grid timeline-grid--light">
@@ -151,14 +128,31 @@ import { SeoService } from "../services/seo.service";
     <section class="section">
       <div class="site-container split-head">
         <div>
-          <span class="eyebrow">Testimonios</span>
-          <h2>Percepción de clientes sobre ejecución, claridad y continuidad.</h2>
+          <span class="eyebrow">Cobertura</span>
+          <h2>Base operativa en Vigo. Cobertura en toda Galicia.</h2>
+        </div>
+        <a class="button button-secondary" routerLink="/zonas">Ver zonas de trabajo</a>
+      </div>
+
+      <div class="site-container card-grid card-grid--three">
+        <article class="surface-card" *ngFor="let item of coverage">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-container split-head">
+        <div>
+          <span class="eyebrow">Clientes</span>
+          <h2>Lo que dicen los clientes sobre ejecución, claridad y resultado.</h2>
         </div>
       </div>
 
       <div class="site-container card-grid card-grid--three">
         <article class="surface-card surface-card--story" *ngFor="let item of customerQuotes">
-          <p>{{ item.quote }}</p>
+          <p class="testimonial-quote">"{{ item.quote }}"</p>
           <div class="story-block">
             <strong>{{ item.name }}</strong>
             <p>{{ item.role }} · {{ item.company }}</p>
@@ -172,10 +166,10 @@ import { SeoService } from "../services/seo.service";
     <section class="section">
       <div class="site-container section-head">
         <span class="eyebrow">Preguntas frecuentes</span>
-        <h2>Respuestas rápidas antes de pedir presupuesto.</h2>
+        <h2>Respuestas directas a las dudas más habituales.</h2>
       </div>
 
-      <div class="site-container faq-list">
+      <div class="site-container faq-list faq-list--wide">
         <details class="faq-item" *ngFor="let item of faqs">
           <summary>{{ item.question }}</summary>
           <p>{{ item.answer }}</p>
