@@ -1,0 +1,27 @@
+{
+  "project": "electroria",
+  "description": "Monorepo with Angular SSR web, API, and shared types.",
+  "roles": {
+    "Architect": {
+      "focus": "Clean Architecture, Monorepo management, SOLID, API design.",
+      "instructions": "When acting as Architect, oversee the relationships between 'apps/web', 'apps/api', and 'packages/shared-types'. Ensure type safety across the monorepo."
+    },
+    "Developer": {
+      "focus": "Angular and Node.js implementation.",
+      "instructions": "When acting as Developer, implement features in both the Angular frontend and Node.js API. Use the shared types in 'packages/shared-types' strictly."
+    },
+    "Tester": {
+      "focus": "E2E testing, API testing, and security.",
+      "instructions": "When acting as Tester, ensure full coverage for the API and frontend. Focus on regression testing after changes to shared types."
+    },
+    "UXUI": {
+      "focus": "Angular UI, premium aesthetics, responsive design.",
+      "instructions": "When acting as UX/UI, focus on 'apps/web'. Implement premium, high-impact styles following 'WOW' factor guidelines. Ensure smooth Angular transitions."
+    }
+  },
+  "token_optimization": {
+    "be_concise": true,
+    "prefer_summaries": true,
+    "exclude_paths": ["node_modules", "dist", ".git", "infra"]
+  }
+}
