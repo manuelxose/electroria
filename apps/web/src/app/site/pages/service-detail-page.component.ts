@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterModule } from "@angular/router";
 import {
   buildBreadcrumbItems,
   getServiceBySlug,
+  getServiceImage,
   services,
   type ServiceEntry,
 } from "../content/site-content";
@@ -30,6 +31,17 @@ import { SeoService } from "../services/seo.service";
           </div>
 
           <aside class="surface-card">
+            <figure class="service-detail__image" *ngIf="imageOf(current) as image">
+              <img
+                [src]="image"
+                [alt]="current.name"
+                width="600"
+                height="400"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+              >
+            </figure>
             <span class="panel-label">Encaje habitual</span>
             <ul class="plain-list">
               <li *ngFor="let sector of current.sectors">{{ sector }}</li>
@@ -121,6 +133,10 @@ export class ServiceDetailPageComponent implements OnInit {
 
   service?: ServiceEntry;
   relatedServices: ServiceEntry[] = [];
+
+  imageOf(service: ServiceEntry): string | undefined {
+    return getServiceImage(service.slug);
+  }
 
   constructor(
     private readonly route: ActivatedRoute,

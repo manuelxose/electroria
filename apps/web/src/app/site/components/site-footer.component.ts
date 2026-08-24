@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import {
   footerLinks,
   legalLinks,
+  localities,
   services,
   SITE_ADDRESS,
   SITE_EMAIL,
@@ -14,6 +15,7 @@ import {
   SITE_PHONE,
   SITE_REGION,
   SITE_TAGLINE,
+  SITE_WHATSAPP,
 } from "../content/site-content";
 
 @Component({
@@ -53,10 +55,22 @@ import {
         </div>
 
         <div>
+          <h3>Cobertura</h3>
+          <ul class="footer-list">
+            <li *ngFor="let locality of localityLinks">
+              <a [routerLink]="locality.path">Electricista en {{ locality.label }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
           <h3>Contacto</h3>
           <ul class="footer-list">
             <li><a [href]="'tel:' + phone">{{ phoneLabel }}</a></li>
             <li><a [href]="'tel:' + phoneAlt">{{ phoneAltLabel }}</a></li>
+            <li>
+              <a [href]="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+            </li>
             <li><a [href]="'mailto:' + email">{{ email }}</a></li>
             <li>{{ address }}</li>
             <li>{{ region }}</li>
@@ -80,12 +94,17 @@ export class SiteFooterComponent {
   quickLinks = footerLinks;
   legalNav = legalLinks;
   serviceLinks = services;
+  localityLinks = localities.map((locality) => ({
+    label: locality.name,
+    path: locality.seo.path,
+  }));
   address = SITE_ADDRESS;
   email = SITE_EMAIL;
   phone = SITE_PHONE;
   phoneAlt = SITE_PHONE_ALT;
   phoneAltLabel = SITE_PHONE_ALT_LABEL;
   phoneLabel = SITE_PHONE_LABEL;
+  whatsapp = SITE_WHATSAPP;
   region = SITE_REGION;
   siteName = SITE_NAME;
   tagline = SITE_TAGLINE;

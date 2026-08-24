@@ -9,6 +9,7 @@ import {
   SITE_PHONE_ALT,
   SITE_PHONE_ALT_LABEL,
   SITE_PHONE_LABEL,
+  SITE_WHATSAPP,
   buildBreadcrumbItems,
   contactPageFaqs,
 } from "../content/site-content";
@@ -36,6 +37,9 @@ import { SeoService } from "../services/seo.service";
             <li>{{ address }}</li>
             <li><a [href]="'tel:' + phone">{{ phoneLabel }}</a></li>
             <li><a [href]="'tel:' + phoneAlt">{{ phoneAltLabel }}</a></li>
+            <li>
+              <a [href]="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+            </li>
             <li><a [href]="'mailto:' + email">{{ email }}</a></li>
           </ul>
         </aside>
@@ -65,6 +69,7 @@ export class ContactPageComponent implements OnInit {
   phoneAlt = SITE_PHONE_ALT;
   phoneLabel = SITE_PHONE_LABEL;
   phoneAltLabel = SITE_PHONE_ALT_LABEL;
+  whatsapp = SITE_WHATSAPP;
   faqs = contactPageFaqs;
 
   constructor(private readonly seo: SeoService) {}

@@ -7,4 +7,6 @@ export const environment = {
   chatWidgetSiteKey: "electroria-public-site-key",
   turnstileEnabled: false,
   turnstileSiteKey: "",
+  analyticsEnabled: false,
+  analyticsMeasurementId: "",
 };

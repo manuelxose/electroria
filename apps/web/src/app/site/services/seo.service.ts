@@ -16,6 +16,10 @@ export interface SeoConfig {
   path: string;
   keywords?: string[];
   noIndex?: boolean;
+  type?: "website" | "article";
+  image?: string;
+  articlePublishedAt?: string;
+  articleModifiedAt?: string;
   schemas?: Record<string, unknown>[];
 }
 
@@ -32,7 +36,6 @@ export class SeoService {
   update(config: SeoConfig): void {
     const pageTitle = `${config.title} | ${SITE_NAME}`;
     const canonicalUrl = `${SITE_URL}${config.path === "/" ? "" : config.path}`;
-    const keywords = config.keywords?.join(", ");
 
     this.title.setTitle(pageTitle);
     this.meta.updateTag({ name: "description", content: config.description });
@@ -48,22 +51,38 @@ export class SeoService {
       property: "og:description",
       content: config.description,
     });
-    this.meta.updateTag({ property: "og:type", content: "website" });
+    this.meta.updateTag({
+      property: "og:type",
+      content: config.type ?? "website",
+    });
     this.meta.updateTag({ property: "og:url", content: canonicalUrl });
     this.meta.updateTag({ property: "og:site_name", content: SITE_NAME });
     this.meta.updateTag({ property: "og:locale", content: "es_ES" });
-    this.meta.updateTag({
-      name: "twitter:card",
-      content: "summary_large_image",
-    });
+
+    const image = config.image ?? `${SITE_URL}/assets/images/og-default.png`;
+    this.meta.updateTag({ property: "og:image", content: image });
+    this.meta.updateTag({ property: "og:image:alt", content: config.title });
+    this.meta.updateTag({ name: "twitter:card", content: "summary_large_image" });
+    this.meta.updateTag({ name: "twitter:image", content: image });
+
     this.meta.updateTag({ name: "twitter:title", content: pageTitle });
     this.meta.updateTag({
       name: "twitter:description",
       content: config.description,
     });
 
-    if (keywords) {
-      this.meta.updateTag({ name: "keywords", content: keywords });
+    if (config.articlePublishedAt) {
+      this.meta.updateTag({
+        property: "article:published_time",
+        content: config.articlePublishedAt,
+      });
+      this.meta.updateTag({
+        property: "article:modified_time",
+        content: config.articleModifiedAt ?? config.articlePublishedAt,
+      });
+    } else {
+      this.meta.removeTag("property='article:published_time'");
+      this.meta.removeTag("property='article:modified_time'");
     }
 
     this.ensureCanonical(canonicalUrl);
@@ -121,7 +140,7 @@ export class SeoService {
       description,
       areaServed: {
         "@type": "Country",
-        name: "Espana",
+        name: "España",
       },
       provider: {
         "@type": "ProfessionalService",
@@ -136,7 +155,9 @@ export class SeoService {
     headline: string,
     description: string,
     path: string,
-    datePublished: string
+    datePublished: string,
+    dateModified?: string,
+    image?: string
   ): Record<string, unknown> {
     return {
       "@context": "https://schema.org",
@@ -144,7 +165,8 @@ export class SeoService {
       headline,
       description,
       datePublished,
-      dateModified: datePublished,
+      dateModified: dateModified ?? datePublished,
+      image: image ? [image] : undefined,
       author: {
         "@type": "Organization",
         name: SITE_NAME,

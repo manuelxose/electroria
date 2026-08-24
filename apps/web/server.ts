@@ -10,6 +10,7 @@ import {
   getBlogCategoryBySlug,
   getBlogPostBySlug,
   getInfoPageByKey,
+  getLocalityBySlug,
   getServiceBySlug,
   goneRoutes,
   legacyRedirects,
@@ -17,25 +18,29 @@ import {
   SITE_URL,
 } from "./src/app/site/content/site-content";
 
-type BlogListResponse = {
-  items?: Array<{
-    slug?: string;
-  }>;
+type BlogListItem = {
+  slug?: string;
+  publishedAt?: string | null;
+  featuredImage?: string | null;
 };
 
-type CachedBlogSlugs = {
-  slugs: Set<string>;
+type BlogListResponse = {
+  items?: BlogListItem[];
+};
+
+type CachedBlogPosts = {
+  posts: BlogListItem[];
   cachedAt: number;
 };
 
-const BLOG_SLUG_CACHE_TTL_MS = 60_000;
-let cachedBlogSlugs: CachedBlogSlugs = {
-  slugs: new Set<string>(),
+const BLOG_POSTS_CACHE_TTL_MS = 60_000;
+let cachedBlogPosts: CachedBlogPosts = {
+  posts: [],
   cachedAt: 0,
 };
 
 function getApiInternalUrl(): URL {
-  return new URL(process.env["API_INTERNAL_URL"] || "http://127.0.0.1:3001");
+  return new URL(process.env["API_INTERNAL_URL"] || "http://127.0.0.1:3201");
 }
 
 function getCanonicalHost(): string {
@@ -70,6 +75,8 @@ function getPublicRuntimeConfig() {
       process.env["CHAT_WIDGET_SITE_KEY"] || "electroria-public-site-key",
     turnstileEnabled: parseBoolean(process.env["TURNSTILE_ENABLED"], false),
     turnstileSiteKey: process.env["TURNSTILE_SITE_KEY"] || "",
+    analyticsEnabled: parseBoolean(process.env["ANALYTICS_ENABLED"], false),
+    analyticsMeasurementId: process.env["ANALYTICS_MEASUREMENT_ID"] || "",
   };
 }
 
@@ -125,37 +132,37 @@ function isGoneRoute(path: string): boolean {
   return goneRoutes.some((entry) => path === entry || path.startsWith(`${entry}/`));
 }
 
-async function fetchPublishedBlogSlugs(apiTarget: URL): Promise<Set<string>> {
+async function fetchPublishedBlogPosts(apiTarget: URL): Promise<BlogListItem[]> {
   const now = Date.now();
-  if (now - cachedBlogSlugs.cachedAt < BLOG_SLUG_CACHE_TTL_MS && cachedBlogSlugs.slugs.size) {
-    return cachedBlogSlugs.slugs;
+  if (now - cachedBlogPosts.cachedAt < BLOG_POSTS_CACHE_TTL_MS && cachedBlogPosts.posts.length) {
+    return cachedBlogPosts.posts;
   }
 
   try {
     const response = await fetch(new URL("/api/v1/blog", apiTarget));
     if (!response.ok) {
-      return cachedBlogSlugs.slugs;
+      return cachedBlogPosts.posts;
     }
 
     const payload = (await response.json()) as BlogListResponse;
-    const slugs = new Set<string>();
-    (payload.items ?? []).forEach((item) => {
-      const slug = String(item.slug ?? "").trim();
-      if (slug) {
-        slugs.add(slug);
-      }
-    });
+    const posts = (payload.items ?? [])
+      .map((item) => ({
+        slug: String(item.slug ?? "").trim(),
+        publishedAt: item.publishedAt ?? null,
+        featuredImage: item.featuredImage ?? null,
+      }))
+      .filter((item) => item.slug);
 
-    if (slugs.size) {
-      cachedBlogSlugs = {
-        slugs,
+    if (posts.length) {
+      cachedBlogPosts = {
+        posts,
         cachedAt: now,
       };
     }
 
-    return cachedBlogSlugs.slugs;
+    return cachedBlogPosts.posts;
   } catch {
-    return cachedBlogSlugs.slugs;
+    return cachedBlogPosts.posts;
   }
 }
 
@@ -169,6 +176,11 @@ async function resolveStatusCode(path: string, apiTarget: URL): Promise<number> 
     return getServiceBySlug(slug) ? 200 : 404;
   }
 
+  if (path.startsWith("/zonas/")) {
+    const slug = path.split("/")[2] || "";
+    return getLocalityBySlug(slug) ? 200 : 404;
+  }
+
   if (path.startsWith("/blog/categoria/")) {
     const slug = path.split("/")[3] || "";
     return getBlogCategoryBySlug(slug) ? 200 : 404;
@@ -180,8 +192,8 @@ async function resolveStatusCode(path: string, apiTarget: URL): Promise<number> 
       return 200;
     }
 
-    const apiSlugs = await fetchPublishedBlogSlugs(apiTarget);
-    return apiSlugs.has(slug) ? 200 : 404;
+    const posts = await fetchPublishedBlogPosts(apiTarget);
+    return posts.some((post) => post.slug === slug) ? 200 : 404;
   }
 
   const infoPageKeys = ["empresa", "zonas", "proyectos", "certificaciones", "aviso-legal", "privacidad", "cookies"];
@@ -192,23 +204,47 @@ async function resolveStatusCode(path: string, apiTarget: URL): Promise<number> 
   return 404;
 }
 
-async function buildSitemapXml(apiTarget: URL): Promise<string> {
-  const apiSlugs = await fetchPublishedBlogSlugs(apiTarget);
-  const dynamicPaths = Array.from(apiSlugs)
-    .filter((slug) => !getBlogPostBySlug(slug))
-    .map((slug) => `/blog/${slug}`);
-  const allPaths = Array.from(new Set([...publicStaticPaths, ...dynamicPaths])).sort();
-  const timestamp = new Date().toISOString();
+const STATIC_CONTENT_LASTMOD = "2026-08-22";
 
-  const xmlItems = allPaths
-    .map((path) => {
-      const url = `${SITE_URL}${path === "/" ? "" : path}`;
-      return `<url><loc>${escapeXml(url)}</loc><lastmod>${timestamp}</lastmod></url>`;
+type SitemapEntry = {
+  path: string;
+  lastmod: string;
+  image: string | null;
+};
+
+async function buildSitemapXml(apiTarget: URL): Promise<string> {
+  const posts = await fetchPublishedBlogPosts(apiTarget);
+  const dynamicEntries: SitemapEntry[] = posts
+    .filter((post) => post.slug && !getBlogPostBySlug(post.slug))
+    .map((post) => ({
+      path: `/blog/${post.slug}`,
+      lastmod: post.publishedAt ? String(post.publishedAt).slice(0, 10) : STATIC_CONTENT_LASTMOD,
+      image: post.featuredImage ?? null,
+    }));
+  const dynamicPaths = new Set(dynamicEntries.map((entry) => entry.path));
+  const staticEntries: SitemapEntry[] = publicStaticPaths
+    .filter((path) => !dynamicPaths.has(path))
+    .map((path) => ({
+      path,
+      lastmod: STATIC_CONTENT_LASTMOD,
+      image: null,
+    }));
+  const allEntries = [...staticEntries, ...dynamicEntries].sort((a, b) =>
+    a.path.localeCompare(b.path)
+  );
+
+  const xmlItems = allEntries
+    .map((entry) => {
+      const url = `${SITE_URL}${entry.path === "/" ? "" : entry.path}`;
+      const imageXml = entry.image
+        ? `<image:image><image:loc>${escapeXml(entry.image)}</image:loc></image:image>`
+        : "";
+      return `<url><loc>${escapeXml(url)}</loc><lastmod>${escapeXml(entry.lastmod)}</lastmod>${imageXml}</url>`;
     })
     .join("");
 
   return `<?xml version="1.0" encoding="UTF-8"?>` +
-    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${xmlItems}</urlset>`;
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">${xmlItems}</urlset>`;
 }
 
 function buildRobotsTxt(): string {
@@ -319,7 +355,13 @@ export function app(): express.Express {
       )};</script>`;
 
       res.status(statusCode);
-      res.setHeader("Cache-Control", "no-store");
+      const hasQueryString = req.originalUrl.includes("?");
+      res.setHeader(
+        "Cache-Control",
+        hasQueryString
+          ? "no-store"
+          : "public, max-age=0, s-maxage=300, stale-while-revalidate=86400"
+      );
       res.send(html.replace("</head>", `${runtimeScript}</head>`));
     } catch (error) {
       console.error("SSR Error:", error);

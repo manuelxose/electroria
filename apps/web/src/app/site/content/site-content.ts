@@ -52,13 +52,6 @@ export interface HighlightCard {
   description: string;
 }
 
-export interface TestimonialEntry {
-  name: string;
-  role: string;
-  company: string;
-  quote: string;
-}
-
 export interface ProcessStep {
   title: string;
   description: string;
@@ -73,6 +66,7 @@ export interface ContentSection {
   title: string;
   paragraphs: string[];
   bullets?: string[];
+  links?: NavEntry[];
 }
 
 export interface InfoPageEntry {
@@ -81,6 +75,8 @@ export interface InfoPageEntry {
   title: string;
   intro: string;
   seo: SeoEntry;
+  image?: string;
+  heroChips?: NavEntry[];
   highlights?: HighlightCard[];
   sections: ContentSection[];
   faqs?: FaqEntry[];
@@ -140,6 +136,9 @@ export const SITE_PHONE = "+34682047802";
 export const SITE_PHONE_LABEL = "682 04 78 02";
 export const SITE_PHONE_ALT = "+34606992140";
 export const SITE_PHONE_ALT_LABEL = "606 99 21 40";
+export const SITE_WHATSAPP =
+  "https://wa.me/34682047802?text=" +
+  encodeURIComponent("Hola, necesito información sobre un servicio eléctrico.");
 export const SITE_ADDRESS = "Calle Alfonso XIII, 15, 36204 Vigo, Pontevedra";
 export const SITE_REGION = "Vigo y Galicia";
 export const SITE_CITY = "Vigo";
@@ -197,29 +196,29 @@ export const legalLinks: NavEntry[] = [
 export const heroHighlights = [
   "Instalaciones eléctricas completas para vivienda, local y nave industrial",
   "Cuadros eléctricos a medida, mantenimiento preventivo y soporte de emergencia 24/7",
-  "Instaladores autorizados con foco en seguridad, continuidad y cumplimiento normativo",
+  "Ejecución conforme a REBT con foco en seguridad, continuidad y documentación",
 ];
 
 export const trustMetrics: MetricEntry[] = [
   {
-    value: "+500",
-    label: "proyectos",
-    detail: "Instalaciones, cuadros, mantenimientos y asistencias completadas con éxito.",
+    value: "REBT",
+    label: "normativa aplicada",
+    detail: "Diseño y ejecución conforme al Reglamento Electrotécnico de Baja Tensión vigente.",
   },
   {
     value: "24/7",
-    label: "servicio de emergencia",
-    detail: "Respuesta prioritaria para incidencias eléctricas en servicio continuo.",
+    label: "emergencias eléctricas",
+    detail: "Respuesta prioritaria para averías con impacto sobre seguridad o continuidad de servicio.",
+  },
+  {
+    value: "Vigo",
+    label: "base operativa",
+    detail: "Atención directa en Vigo y área metropolitana, con proyectos programados en toda Galicia.",
   },
   {
     value: "100%",
-    label: "instaladores autorizados",
-    detail: "Equipo técnico cualificado y trazabilidad documental en cada intervención.",
-  },
-  {
-    value: "2 años",
-    label: "de garantía",
-    detail: "Cobertura mínima de instalación sobre trabajos ejecutados y materiales acordados.",
+    label: "cierre documental",
+    detail: "Cuadros etiquetados, esquemas y documentación preparada en cada intervención.",
   },
 ];
 
@@ -284,30 +283,6 @@ export const processSteps: ProcessStep[] = [
     title: "Verificación, certificación y entrega",
     description:
       "Probamos, etiquetamos, documentamos y cerramos la instalación con la trazabilidad que exige explotación real.",
-  },
-];
-
-export const testimonials: TestimonialEntry[] = [
-  {
-    name: "María P.",
-    role: "Gerencia",
-    company: "Cadena de retail en Vigo",
-    quote:
-      "Nos resolvieron la reforma eléctrica del local con muy poca ventana de parada y una ejecución limpia.",
-  },
-  {
-    name: "Javier R.",
-    role: "Responsable de planta",
-    company: "Industria auxiliar",
-    quote:
-      "Necesitábamos cuadros y mantenimiento con criterio técnico, no un parche. La respuesta fue seria y ordenada.",
-  },
-  {
-    name: "Laura S.",
-    role: "Propiedad",
-    company: "Reforma residencial",
-    quote:
-      "Nos explicaron cada decisión, entregaron la instalación legalizada y dejaron margen para futuras ampliaciones.",
   },
 ];
 
@@ -672,6 +647,19 @@ export const services: ServiceEntry[] = [
 
 export const serviceCards = services;
 
+export const serviceImages: Record<string, string> = {
+  "instalaciones-electricas": "/assets/images/service-instalaciones.png",
+  "cuadros-electricos": "/assets/images/service-cuadros.png",
+  "mantenimiento-preventivo": "/assets/images/service-mantenimiento.png",
+  "automatizacion-industrial": "/assets/images/service-automatizacion.png",
+  "eficiencia-energetica": "/assets/images/service-eficiencia.png",
+  "emergencias-24-7": "/assets/images/service-emergencias.png",
+};
+
+export function getServiceImage(slug: string): string | undefined {
+  return serviceImages[slug];
+}
+
 export const serviceGroups = [
   {
     title: "Infraestructura eléctrica",
@@ -728,6 +716,298 @@ export const projectHighlights: HighlightCard[] = [
   },
 ];
 
+export interface LocalityEntry {
+  slug: string;
+  name: string;
+  eyebrow: string;
+  title: string;
+  intro: string;
+  seo: SeoEntry;
+  highlights: string[];
+  servicesCovered: string[];
+  faqs: FaqEntry[];
+  origin: ContentOrigin;
+}
+
+export const localities: LocalityEntry[] = [
+  {
+    slug: "vigo",
+    name: "Vigo",
+    eyebrow: "Cobertura · Vigo",
+    title: "Instalaciones eléctricas en Vigo con base operativa local.",
+    intro:
+      "Electroria opera desde Vigo (Calle Alfonso XIII, 15) con cobertura prioritaria en la ciudad y su área metropolitana para instalaciones, cuadros, mantenimiento y urgencias eléctricas.",
+    seo: {
+      title: "Electricista en Vigo | Instalaciones eléctricas",
+      description:
+        "Instalaciones eléctricas, cuadros a medida, mantenimiento preventivo y urgencias 24/7 en Vigo con base operativa local y cobertura en el área metropolitana.",
+      path: "/zonas/vigo",
+      keywords: ["electricista vigo", "instalaciones electricas vigo", "urgencias electricas vigo"],
+    },
+    highlights: [
+      "Respuesta prioritaria por proximidad operativa",
+      "Urgencias 24/7 para averías con impacto de seguridad o servicio",
+      "Vivienda, comercio, oficinas e industria ligera",
+    ],
+    servicesCovered: [
+      "instalaciones-electricas",
+      "cuadros-electricos",
+      "mantenimiento-preventivo",
+      "emergencias-24-7",
+    ],
+    faqs: [
+      {
+        question: "¿Atendéis urgencias eléctricas en Vigo?",
+        answer:
+          "Sí. La respuesta en Vigo y área metropolitana es prioritaria y se organiza por criticidad de la incidencia.",
+      },
+      {
+        question: "¿Cómo pido presupuesto para una instalación en Vigo?",
+        answer:
+          "Con el formulario de contacto o por teléfono. Revisamos alcance, uso y ubicación antes de preparar una propuesta cerrada.",
+      },
+    ],
+    origin: "existing",
+  },
+  {
+    slug: "pontevedra",
+    name: "Pontevedra",
+    eyebrow: "Cobertura · Pontevedra",
+    title: "Instalaciones y cuadros eléctricos en Pontevedra.",
+    intro:
+      "Cobertura programada en Pontevedra y su entorno para instalaciones completas, cuadros a medida, mantenimiento preventivo y proyectos definidos.",
+    seo: {
+      title: "Electricista en Pontevedra | Instalaciones eléctricas",
+      description:
+        "Instalaciones eléctricas, cuadros a medida y mantenimiento en Pontevedra con actuaciones programadas y presupuesto cerrado.",
+      path: "/zonas/pontevedra",
+      keywords: ["electricista pontevedra", "instalaciones electricas pontevedra", "cuadros electricos pontevedra"],
+    },
+    highlights: [
+      "Actuaciones programadas y presupuesto cerrado",
+      "Cuadros a medida y mantenimiento preventivo",
+      "Coordinación con obra y actividad en local",
+    ],
+    servicesCovered: [
+      "instalaciones-electricas",
+      "cuadros-electricos",
+      "mantenimiento-preventivo",
+      "eficiencia-energetica",
+    ],
+    faqs: [
+      {
+        question: "¿Cubrís reformas eléctricas en Pontevedra?",
+        answer:
+          "Sí. Revisamos el alcance, el estado de la instalación y la ventana de trabajo antes de proponer plan y presupuesto.",
+      },
+      {
+        question: "¿Atendéis urgencias en Pontevedra?",
+        answer:
+          "La respuesta urgente se prioriza por criticidad y disponibilidad operativa. Las actuaciones programadas se agendan con antelación.",
+      },
+    ],
+    origin: "existing",
+  },
+  {
+    slug: "redondela",
+    name: "Redondela",
+    eyebrow: "Cobertura · Redondela",
+    title: "Servicios eléctricos en Redondela.",
+    intro:
+      "Electroria cubre Redondela dentro del área metropolitana de Vigo para instalaciones, cuadros, mantenimiento y urgencias eléctricas.",
+    seo: {
+      title: "Electricista en Redondela | Instalaciones eléctricas",
+      description:
+        "Instalaciones eléctricas, cuadros a medida y mantenimiento en Redondela con cobertura desde el área metropolitana de Vigo.",
+      path: "/zonas/redondela",
+      keywords: ["electricista redondela", "instalaciones electricas redondela", "cuadros electricos redondela"],
+    },
+    highlights: [
+      "Cobertura desde el área metropolitana de Vigo",
+      "Urgencias 24/7 priorizadas por criticidad",
+      "Vivienda, local y pequeña industria",
+    ],
+    servicesCovered: [
+      "instalaciones-electricas",
+      "cuadros-electricos",
+      "mantenimiento-preventivo",
+      "emergencias-24-7",
+    ],
+    faqs: [
+      {
+        question: "¿Atendéis averías urgentes en Redondela?",
+        answer:
+          "Sí. Priorizamos por riesgo eléctrico e impacto sobre la actividad, como en el resto del área metropolitana.",
+      },
+      {
+        question: "¿Hacéis cuadros a medida en Redondela?",
+        answer:
+          "Sí. Diseñamos, fabricamos y ponemos en marcha cuadros residenciales, terciarios e industriales.",
+      },
+    ],
+    origin: "existing",
+  },
+  {
+    slug: "mos",
+    name: "Mos",
+    eyebrow: "Cobertura · Mos",
+    title: "Servicios eléctricos en Mos.",
+    intro:
+      "Cobertura en Mos para instalaciones eléctricas, cuadros, mantenimiento preventivo y respuesta ante incidencias.",
+    seo: {
+      title: "Electricista en Mos | Instalaciones eléctricas",
+      description:
+        "Instalaciones eléctricas, cuadros y mantenimiento en Mos con cobertura desde el área metropolitana de Vigo.",
+      path: "/zonas/mos",
+      keywords: ["electricista mos", "instalaciones electricas mos", "mantenimiento electrico mos"],
+    },
+    highlights: [
+      "Vivienda, comercio y talleres",
+      "Mantenimiento preventivo recurrente",
+      "Urgencias por criticidad",
+    ],
+    servicesCovered: [
+      "instalaciones-electricas",
+      "cuadros-electricos",
+      "mantenimiento-preventivo",
+    ],
+    faqs: [
+      {
+        question: "¿Cubrís Mos con la misma respuesta que Vigo?",
+        answer:
+          "Mos forma parte del área metropolitana donde trabajamos de forma prioritaria.",
+      },
+      {
+        question: "¿Qué servicios ofrecéis en Mos?",
+        answer:
+          "Instalaciones completas, cuadros a medida, mantenimiento preventivo y respuesta ante incidencias eléctricas.",
+      },
+    ],
+    origin: "existing",
+  },
+  {
+    slug: "nigran",
+    name: "Nigrán",
+    eyebrow: "Cobertura · Nigrán",
+    title: "Servicios eléctricos en Nigrán.",
+    intro:
+      "Cobertura en Nigrán para instalaciones, cuadros, mantenimiento y urgencias con respuesta desde Vigo.",
+    seo: {
+      title: "Electricista en Nigrán | Instalaciones eléctricas",
+      description:
+        "Instalaciones eléctricas, cuadros a medida y mantenimiento en Nigrán con cobertura desde el área metropolitana de Vigo.",
+      path: "/zonas/nigran",
+      keywords: ["electricista nigran", "instalaciones electricas nigran", "urgencias electricas nigran"],
+    },
+    highlights: [
+      "Vivienda y segunda residencia",
+      "Cuadros y protecciones",
+      "Urgencias 24/7 por criticidad",
+    ],
+    servicesCovered: [
+      "instalaciones-electricas",
+      "cuadros-electricos",
+      "emergencias-24-7",
+    ],
+    faqs: [
+      {
+        question: "¿Atendéis reformas eléctricas en Nigrán?",
+        answer:
+          "Sí. Valoramos alcance, estado de la instalación y plazos antes de proponer presupuesto.",
+      },
+      {
+        question: "¿Hacéis revisiones de cuadros en Nigrán?",
+        answer:
+          "Sí. Revisamos protecciones, aprietes y puntos de degradación como parte del mantenimiento preventivo.",
+      },
+    ],
+    origin: "existing",
+  },
+  {
+    slug: "gondomar",
+    name: "Gondomar",
+    eyebrow: "Cobertura · Gondomar",
+    title: "Servicios eléctricos en Gondomar.",
+    intro:
+      "Cobertura en Gondomar para instalaciones eléctricas, cuadros y mantenimiento con respuesta desde el área metropolitana.",
+    seo: {
+      title: "Electricista en Gondomar | Instalaciones eléctricas",
+      description:
+        "Instalaciones eléctricas, cuadros a medida y mantenimiento en Gondomar con cobertura desde Vigo.",
+      path: "/zonas/gondomar",
+      keywords: ["electricista gondomar", "instalaciones electricas gondomar", "mantenimiento electrico gondomar"],
+    },
+    highlights: [
+      "Vivienda y local comercial",
+      "Cuadros y protecciones",
+      "Mantenimiento preventivo",
+    ],
+    servicesCovered: [
+      "instalaciones-electricas",
+      "cuadros-electricos",
+      "mantenimiento-preventivo",
+    ],
+    faqs: [
+      {
+        question: "¿Cubrís Gondomar?",
+        answer:
+          "Sí. Gondomar está dentro de nuestra cobertura prioritaria del área metropolitana de Vigo.",
+      },
+      {
+        question: "¿Cómo se agenda una actuación en Gondomar?",
+        answer:
+          "Contacta por teléfono o formulario y coordinamos visita, revisión y presupuesto.",
+      },
+    ],
+    origin: "existing",
+  },
+  {
+    slug: "porrino",
+    name: "Porriño",
+    eyebrow: "Cobertura · Porriño",
+    title: "Servicios eléctricos en Porriño.",
+    intro:
+      "Cobertura en Porriño para instalaciones eléctricas, cuadros, mantenimiento y automatización en entornos industriales y comerciales.",
+    seo: {
+      title: "Electricista en Porriño | Instalaciones eléctricas",
+      description:
+        "Instalaciones eléctricas, cuadros a medida, mantenimiento y automatización en Porriño con enfoque industrial y comercial.",
+      path: "/zonas/porrino",
+      keywords: ["electricista porrino", "cuadros electricos porrino", "automatizacion industrial porrino"],
+    },
+    highlights: [
+      "Entornos industriales y comerciales",
+      "Cuadros a medida y automatización",
+      "Mantenimiento preventivo",
+    ],
+    servicesCovered: [
+      "instalaciones-electricas",
+      "cuadros-electricos",
+      "mantenimiento-preventivo",
+      "automatizacion-industrial",
+    ],
+    faqs: [
+      {
+        question: "¿Trabajáis con industria en Porriño?",
+        answer:
+          "Sí. Cubrimos cuadros, mantenimiento y automatización para talleres y entornos industriales de la zona.",
+      },
+      {
+        question: "¿Ofrecéis mantenimiento recurrente en Porriño?",
+        answer:
+          "Sí. Diseñamos planes de revisión periódica adaptados a criticidad y uso.",
+      },
+    ],
+    origin: "existing",
+  },
+];
+
+export function getLocalityBySlug(
+  slug: string | null | undefined
+): LocalityEntry | undefined {
+  return localities.find((locality) => locality.slug === slug);
+}
+
 export const infoPages: Record<string, InfoPageEntry> = {
   empresa: {
     key: "empresa",
@@ -735,6 +1015,11 @@ export const infoPages: Record<string, InfoPageEntry> = {
     title: "Instalaciones eléctricas en Vigo con una base técnica pensada para durar.",
     intro:
       "Electroria reordena y ejecuta instalaciones eléctricas para clientes que necesitan seguridad, cumplimiento y continuidad, no solo una reparación puntual.",
+    image: "/assets/images/empresa-team.png",
+    heroChips: services.map((service) => ({
+      label: service.shortName,
+      path: service.seo.path,
+    })),
     seo: {
       title: "Electroria | Empresa de instalaciones eléctricas en Vigo",
       description:
@@ -744,9 +1029,9 @@ export const infoPages: Record<string, InfoPageEntry> = {
     },
     highlights: [
       {
-        title: "+15 años de experiencia",
+        title: "Base operativa en Vigo",
         description:
-          "Experiencia acumulada en instalaciones, adecuaciones, cuadros y soporte técnico para distintos entornos de uso.",
+          "Atención directa desde Vigo con cobertura prioritaria en el área metropolitana y capacidad de proyecto en Galicia.",
       },
       {
         title: "Cobertura local con criterio operativo",
@@ -802,6 +1087,10 @@ export const infoPages: Record<string, InfoPageEntry> = {
     title: "Cobertura eléctrica en Vigo y Galicia con prioridad donde el tiempo de respuesta sí importa.",
     intro:
       "Nuestra cobertura principal se concentra en Vigo y Pontevedra, con capacidad para asumir proyectos y mantenimientos en el resto de Galicia.",
+    heroChips: localities.map((locality) => ({
+      label: `Electricista en ${locality.name}`,
+      path: locality.seo.path,
+    })),
     seo: {
       title: "Cobertura de instalaciones eléctricas en Galicia",
       description:
@@ -833,6 +1122,10 @@ export const infoPages: Record<string, InfoPageEntry> = {
           "Trabajamos de forma prioritaria en Vigo, Redondela, Mos, Nigrán, Gondomar, Porriño y Pontevedra.",
           "También asumimos trabajos programados en Santiago, A Coruña, Ourense y otras ubicaciones gallegas cuando el proyecto requiere una solución técnica concreta.",
         ],
+        links: localities.map((locality) => ({
+          label: `Electricista en ${locality.name}`,
+          path: locality.seo.path,
+        })),
       },
       {
         title: "Cómo priorizamos urgencias",
@@ -852,6 +1145,10 @@ export const infoPages: Record<string, InfoPageEntry> = {
     title: "Tipologías de proyecto que resolvemos con más frecuencia.",
     intro:
       "No publicamos nombres de cliente ni referencias sensibles, pero sí organizamos los escenarios de proyecto donde Electroria aporta más valor técnico.",
+    heroChips: services.map((service) => ({
+      label: service.shortName,
+      path: service.seo.path,
+    })),
     seo: {
       title: "Proyectos eléctricos habituales | Electroria",
       description:
@@ -1213,7 +1510,7 @@ export function getBlogPostsByCategory(slug: string | null | undefined): BlogPos
 export const blogListIntro = {
   title: "Blog de Electroria",
   description:
-    "Guías y artículos ya publicados en la web actual, preservados y normalizados para la nueva base Angular SSR.",
+    "Artículos técnicos y comerciales sobre instalaciones eléctricas, cuadros, normativa, mantenimiento y ahorro energético.",
 };
 
 export const legacyRedirects: LegacyRedirectEntry[] = [
@@ -1242,12 +1539,8 @@ export const legacyRedirects: LegacyRedirectEntry[] = [
   { from: "/eficiencia-energetica/", to: "/servicios/eficiencia-energetica", statusCode: 301 },
   { from: "/emergencias-24-7/", to: "/servicios/emergencias-24-7", statusCode: 301 },
   { from: "/nosotros/", to: "/empresa", statusCode: 301 },
-  { from: "/proyectos/", to: "/proyectos", statusCode: 301 },
-  { from: "/certificaciones/", to: "/certificaciones", statusCode: 301 },
   { from: "/zonas-servicio/", to: "/zonas", statusCode: 301 },
-  { from: "/aviso-legal/", to: "/aviso-legal", statusCode: 301 },
   { from: "/politica-privacidad/", to: "/privacidad", statusCode: 301 },
-  { from: "/cookies/", to: "/cookies", statusCode: 301 },
 ];
 
 export const goneRoutes = [
@@ -1276,6 +1569,7 @@ export const publicStaticPaths = [
   "/privacidad",
   "/cookies",
   ...services.map((service) => service.seo.path),
+  ...localities.map((locality) => locality.seo.path),
   ...legacyBlogPosts.map((post) => post.seo.path),
 ];
 

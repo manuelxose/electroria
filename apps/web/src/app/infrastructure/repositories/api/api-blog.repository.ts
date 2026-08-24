@@ -12,9 +12,14 @@ type ApiBlogPost = {
   shortDescription: string;
   content: string;
   image?: string | File;
+  featuredImage?: string | null;
   tags?: string[];
   author?: string;
+  categorySlug?: string | null;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
   date?: string;
+  publishedAt?: string | null;
   createdAt?: string;
   updatedAt?: string;
 };
@@ -63,71 +68,14 @@ export class ApiBlogRepository implements BlogRepository {
     }
   }
 
-  async create(data: ApiBlogPost): Promise<void> {
-    const payload = { ...data };
-
-    if (this.isFile(payload.image)) {
-      payload.image = await this.uploadImage(payload.image, payload.title);
-    }
-
-    await firstValueFrom(
-      this.http.post(`${this.baseUrl}/api/v1/blog`, payload, {
-        withCredentials: true,
-      })
-    );
-  }
-
-  async update(id: string, data: ApiBlogPost): Promise<void> {
-    const payload = { ...data };
-
-    if (this.isFile(payload.image)) {
-      payload.image = await this.uploadImage(payload.image, payload.title);
-    }
-
-    await firstValueFrom(
-      this.http.put(`${this.baseUrl}/api/v1/blog/${id}`, payload, {
-        withCredentials: true,
-      })
-    );
-  }
-
-  async delete(id: string): Promise<void> {
-    await firstValueFrom(
-      this.http.delete(`${this.baseUrl}/api/v1/blog/${id}`, {
-        withCredentials: true,
-      })
-    );
-  }
-
-  async uploadImage(file: File, _name: string): Promise<any> {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const uploaded = await firstValueFrom(
-      this.http.post<{ url: string }>(
-        `${this.baseUrl}/api/v1/blog/upload-image`,
-        formData,
-        { withCredentials: true }
-      )
-    );
-
-    const imageUrl = uploaded.url ?? "";
-    if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
-      return imageUrl;
-    }
-
-    return `${this.baseUrl}${imageUrl}`;
-  }
-
-  private isFile(value: unknown): value is File {
-    return typeof File !== "undefined" && value instanceof File;
-  }
-
   private normalizePost(post: ApiBlogPost): ApiBlogPost {
-    const dateFallback = post.date ?? post.createdAt ?? new Date().toISOString();
+    const dateFallback =
+      post.publishedAt ?? post.date ?? post.createdAt ?? new Date().toISOString();
     return {
       ...post,
       date: dateFallback,
+      publishedAt: post.publishedAt ?? null,
+      featuredImage: post.featuredImage ?? null,
       tags: Array.isArray(post.tags) ? post.tags : [],
       author: post.author ?? "Electroria",
     };

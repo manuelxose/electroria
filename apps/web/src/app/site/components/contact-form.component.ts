@@ -23,6 +23,7 @@ import {
   contactServiceOptions,
   contactUrgencyOptions,
 } from "../content/site-content";
+import { AnalyticsService } from "../services/analytics.service";
 
 type TurnstileWindow = Window &
   typeof globalThis & {
@@ -61,6 +62,7 @@ export class ContactFormComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
+    private readonly analytics: AnalyticsService,
     @Inject(DOCUMENT) private readonly document: Document,
     @Inject(PLATFORM_ID) private readonly platformId: object,
     @Inject(CONTACT_REPOSITORY)
@@ -149,6 +151,10 @@ export class ContactFormComponent implements OnInit {
 
       this.isSubmitting = false;
       this.submitSuccess = true;
+      this.analytics.trackEvent("quote_request_submitted", {
+        service: this.contactForm.value.serviceType,
+        source_path: this.router.url,
+      });
       this.contactForm.reset({
         website: "",
         privacy: false,

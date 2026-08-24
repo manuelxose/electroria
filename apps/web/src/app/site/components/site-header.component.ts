@@ -14,10 +14,12 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import {
   primaryNavigation,
+  services,
   SITE_EMAIL,
   SITE_NAME,
   SITE_PHONE,
   SITE_PHONE_LABEL,
+  SITE_WHATSAPP,
 } from "../content/site-content";
 
 @Component({
@@ -37,10 +39,15 @@ export class SiteHeaderComponent implements OnDestroy {
   private readonly drawerCloseButton?: ElementRef<HTMLButtonElement>;
 
   readonly navigation = primaryNavigation;
+  readonly serviceLinks = services;
+  readonly directNavigation = primaryNavigation.filter(
+    (item) => item.path !== "/servicios"
+  );
   readonly siteName = SITE_NAME;
   readonly phone = SITE_PHONE;
   readonly phoneLabel = SITE_PHONE_LABEL;
   readonly email = SITE_EMAIL;
+  readonly whatsapp = SITE_WHATSAPP;
   readonly menuPanelId = "site-header-drawer";
 
   menuOpen = false;

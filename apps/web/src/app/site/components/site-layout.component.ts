@@ -1,7 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterModule, RouterOutlet } from "@angular/router";
+import { SITE_WHATSAPP } from "../content/site-content";
 import { ChatWidgetEmbedComponent } from "./chat-widget-embed.component";
+import { ConsentBannerComponent } from "./consent-banner.component";
 import { SiteFooterComponent } from "./site-footer.component";
 import { SiteHeaderComponent } from "./site-header.component";
 
@@ -15,6 +17,7 @@ import { SiteHeaderComponent } from "./site-header.component";
     SiteHeaderComponent,
     SiteFooterComponent,
     ChatWidgetEmbedComponent,
+    ConsentBannerComponent,
   ],
   template: `
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
@@ -27,6 +30,7 @@ import { SiteHeaderComponent } from "./site-header.component";
 
       <app-site-footer></app-site-footer>
       <app-chat-widget-embed></app-chat-widget-embed>
+      <app-consent-banner></app-consent-banner>
 
       <div class="floating-bar" aria-label="Acceso rapido a contacto">
         <div class="floating-bar__copy">
@@ -35,10 +39,19 @@ import { SiteHeaderComponent } from "./site-header.component";
         </div>
         <div class="floating-bar__actions">
           <a class="button button-ghost" href="tel:+34682047802">682 04 78 02</a>
+          <a
+            class="button button-whatsapp"
+            [href]="whatsapp"
+            target="_blank"
+            rel="noopener"
+            aria-label="Contactar por WhatsApp"
+          >WhatsApp</a>
           <a class="button button-primary" routerLink="/contacto">Solicitar presupuesto</a>
         </div>
       </div>
     </div>
   `,
 })
-export class SiteLayoutComponent {}
+export class SiteLayoutComponent {
+  readonly whatsapp = SITE_WHATSAPP;
+}

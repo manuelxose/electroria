@@ -16,6 +16,22 @@ import { SeoService } from "../services/seo.service";
           <span class="eyebrow">{{ current.eyebrow }}</span>
           <h1>{{ current.title }}</h1>
           <p class="lead">{{ current.intro }}</p>
+          <div class="chip-links" *ngIf="current.heroChips?.length">
+            <a *ngFor="let chip of current.heroChips" [routerLink]="chip.path">
+              {{ chip.label }}
+            </a>
+          </div>
+          <figure class="info-hero__image" *ngIf="current.image">
+            <img
+              [src]="current.image"
+              [alt]="current.title"
+              width="800"
+              height="500"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            >
+          </figure>
         </div>
       </section>
 
@@ -35,6 +51,11 @@ import { SeoService } from "../services/seo.service";
             <p *ngFor="let paragraph of section.paragraphs">{{ paragraph }}</p>
             <ul class="plain-list" *ngIf="section.bullets?.length">
               <li *ngFor="let item of section.bullets">{{ item }}</li>
+            </ul>
+            <ul class="zone-links" *ngIf="section.links?.length">
+              <li *ngFor="let link of section.links">
+                <a [routerLink]="link.path">{{ link.label }}</a>
+              </li>
             </ul>
           </div>
         </div>

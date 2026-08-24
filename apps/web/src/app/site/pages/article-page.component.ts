@@ -31,8 +31,12 @@ type ArticleView = {
   contentHtml: string;
   publishedLabel: string;
   publishedAt: string;
+  updatedAt: string | null;
   readingTimeLabel: string;
   path: string;
+  featuredImage: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
 };
 
 @Component({
@@ -47,6 +51,17 @@ type ArticleView = {
           <h1>{{ current.title }}</h1>
           <p class="lead">{{ current.summary }}</p>
           <div class="article-meta">{{ current.readingTimeLabel }} · {{ current.publishedLabel }}</div>
+          <figure class="article-featured" *ngIf="current.featuredImage">
+            <img
+              [src]="current.featuredImage"
+              [alt]="current.title"
+              width="1280"
+              height="720"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            >
+          </figure>
         </div>
       </section>
 
@@ -172,6 +187,10 @@ export class ArticlePageComponent implements OnInit {
           Math.ceil(content.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length / 180)
         )} min`,
         path: `/blog/${slug}`,
+        featuredImage: String(apiArticle.featuredImage ?? "").trim() || null,
+        seoTitle: String(apiArticle.seoTitle ?? "").trim() || null,
+        seoDescription: String(apiArticle.seoDescription ?? "").trim() || null,
+        updatedAt: String(apiArticle.updatedAt ?? "").trim() || null,
       };
     } catch {
       return null;
@@ -189,6 +208,10 @@ export class ArticlePageComponent implements OnInit {
       publishedLabel: `Publicado el ${formatSpanishDate(post.publishedAt)}`,
       readingTimeLabel: `${post.readingTimeMinutes} min`,
       path: post.seo.path,
+      featuredImage: post.featuredImage || null,
+      seoTitle: post.seo.title || null,
+      seoDescription: post.seo.description || null,
+      updatedAt: post.updatedAt || null,
     };
   }
 
@@ -204,10 +227,18 @@ export class ArticlePageComponent implements OnInit {
         path: post.seo.path,
       }));
 
+    const seoTitle = article.seoTitle || article.title;
+    const seoDescription = article.seoDescription || article.summary;
+
     this.seo.update({
-      title: article.title,
-      description: article.summary,
+      title: seoTitle,
+      description: seoDescription,
       path: article.path,
+      type: "article",
+      image: article.featuredImage ?? undefined,
+      articlePublishedAt: article.publishedAt || undefined,
+      articleModifiedAt:
+        article.updatedAt || article.publishedAt || undefined,
       schemas: [
         this.seo.createBreadcrumbSchema(
           buildBreadcrumbItems([
@@ -218,9 +249,11 @@ export class ArticlePageComponent implements OnInit {
         ),
         this.seo.createArticleSchema(
           article.title,
-          article.summary,
+          seoDescription,
           article.path,
-          article.publishedAt
+          article.publishedAt,
+          article.updatedAt || article.publishedAt,
+          article.featuredImage ?? undefined
         ),
       ],
     });

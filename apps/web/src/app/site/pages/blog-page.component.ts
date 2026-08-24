@@ -21,6 +21,7 @@ type BlogCardView = {
   path: string;
   publishedAt: string;
   readingTimeLabel: string;
+  image: string | null;
 };
 
 @Component({
@@ -45,6 +46,16 @@ type BlogCardView = {
     <section class="section">
       <div class="site-container card-grid card-grid--three">
         <article class="surface-card article-card" *ngFor="let post of posts">
+          <figure class="article-card__image" *ngIf="post.image">
+            <img
+              [src]="post.image"
+              [alt]="post.title"
+              width="1280"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            >
+          </figure>
           <span class="chip chip-soft">{{ post.category }}</span>
           <h2>{{ post.title }}</h2>
           <p>{{ post.summary }}</p>
@@ -66,6 +77,7 @@ export class BlogPageComponent implements OnInit {
     path: post.seo.path,
     publishedAt: post.publishedAt,
     readingTimeLabel: `${post.readingTimeMinutes} min`,
+    image: post.featuredImage || null,
   }));
   loadError = "";
 
@@ -78,7 +90,7 @@ export class BlogPageComponent implements OnInit {
     this.seo.update({
       title: "Blog técnico y comercial sobre instalaciones eléctricas",
       description:
-        "Artículos de Electroria sobre instalaciones eléctricas, cuadros, normativa y mantenimiento, preservados del sitio actual y preparados para crecer.",
+        "Artículos de Electroria sobre instalaciones eléctricas, cuadros, normativa y mantenimiento para vivienda, comercio e industria en Galicia.",
       path: "/blog",
       keywords: [
         "blog instalaciones electricas",
@@ -118,6 +130,7 @@ export class BlogPageComponent implements OnInit {
           path: `/blog/${slug}`,
           publishedAt: String(data.publishedAt ?? data.updatedAt ?? data.createdAt ?? ""),
           readingTimeLabel: `${this.estimateReadingTimeLabel(String(data.content ?? ""))}`,
+          image: String(data.featuredImage ?? "").trim() || null,
         });
       });
 

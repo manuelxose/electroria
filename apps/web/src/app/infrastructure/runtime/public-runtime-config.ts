@@ -5,6 +5,8 @@ export type PublicRuntimeConfig = {
   chatWidgetSiteKey?: string;
   turnstileEnabled?: boolean;
   turnstileSiteKey?: string;
+  analyticsEnabled?: boolean;
+  analyticsMeasurementId?: string;
 };
 
 declare global {

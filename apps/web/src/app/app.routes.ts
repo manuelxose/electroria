@@ -36,6 +36,13 @@ export const routes: Routes = [
         data: { pageKey: "zonas" },
       },
       {
+        path: "zonas/:slug",
+        loadComponent: () =>
+          import("./site/pages/locality-page.component").then(
+            (m) => m.LocalityPageComponent
+          ),
+      },
+      {
         path: "proyectos",
         loadComponent: () =>
           import("./site/pages/info-page.component").then((m) => m.InfoPageComponent),

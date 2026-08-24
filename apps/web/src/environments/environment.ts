@@ -11,6 +11,8 @@ export const environment = {
   chatWidgetSiteKey: "electroria-local-site-key",
   turnstileEnabled: false,
   turnstileSiteKey: "",
+  analyticsEnabled: false,
+  analyticsMeasurementId: "",
 };
 
 /*

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "$graphify-root$_apps_api_migrations_004_remove_legacy_auth_sql", "label": "004_remove_legacy_auth.sql", "file_type": "code", "source_file": "apps/api/migrations/004_remove_legacy_auth.sql", "source_location": null}], "edges": []}

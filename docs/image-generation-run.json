@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-08-22T12:57:07.764Z",
+  "model": "black-forest-labs/FLUX.2-pro",
+  "images": [
+    {
+      "name": "hero-panel",
+      "file": "hero-panel.png",
+      "size": 409,
+      "status": "ok"
+    },
+    {
+      "name": "hero-background",
+      "file": "hero-background.png",
+      "size": 217,
+      "status": "ok"
+    },
+    {
+      "name": "service-instalaciones",
+      "file": "service-instalaciones.png",
+      "size": 337,
+      "status": "ok"
+    },
+    {
+      "name": "service-cuadros",
+      "file": "service-cuadros.png",
+      "size": 350,
+      "status": "ok"
+    },
+    {
+      "name": "service-mantenimiento",
+      "file": "service-mantenimiento.png",
+      "size": 345,
+      "status": "ok"
+    },
+    {
+      "name": "service-automatizacion",
+      "file": "service-automatizacion.png",
+      "size": 367,
+      "status": "ok"
+    },
+    {
+      "name": "service-eficiencia",
+      "file": "service-eficiencia.png",
+      "size": 314,
+      "status": "ok"
+    },
+    {
+      "name": "service-emergencias",
+      "file": "service-emergencias.png",
+      "size": 439,
+      "status": "ok"
+    },
+    {
+      "name": "empresa-team",
+      "file": "empresa-team.png",
+      "size": 373,
+      "status": "ok"
+    },
+    {
+      "name": "og-default",
+      "file": "og-default.png",
+      "size": 91,
+      "status": "ok"
+    }
+  ]
+}

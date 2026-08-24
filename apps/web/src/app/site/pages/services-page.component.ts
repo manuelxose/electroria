@@ -1,12 +1,17 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import {
   buildBreadcrumbItems,
+  getServiceImage,
   serviceFaqs,
   serviceGroups,
   services,
+  SITE_URL,
+  type ServiceEntry,
 } from "../content/site-content";
+import { serviceIcon as serviceIconSvg } from "../services/service-icons";
 import { SeoService } from "../services/seo.service";
 
 @Component({
@@ -26,7 +31,7 @@ import { SeoService } from "../services/seo.service";
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-accent">
       <div class="site-container card-grid card-grid--two">
         <article class="surface-card" *ngFor="let group of groups">
           <h2>{{ group.title }}</h2>
@@ -39,17 +44,39 @@ import { SeoService } from "../services/seo.service";
     </section>
 
     <section class="section">
+      <div class="site-container section-head">
+        <span class="eyebrow">Catálogo</span>
+        <h2>Qué hacemos exactamente en cada línea de servicio.</h2>
+        <p>
+          Cada servicio cierra con alcance claro, ejecución coordinada y
+          documentación preparada para explotación y mantenimiento.
+        </p>
+      </div>
       <div class="site-container card-grid card-grid--three">
-        <article class="service-card surface-card service-card--stacked" *ngFor="let service of serviceList">
-          <span class="chip">{{ service.badge }}</span>
-          <h2>{{ service.name }}</h2>
-          <p>{{ service.summary }}</p>
-          <ul class="plain-list">
-            <li *ngFor="let item of service.deliverables">{{ item }}</li>
-          </ul>
-          <div class="service-card__footer">
-            <a class="button button-secondary" [routerLink]="service.seo.path">Ver detalle</a>
-            <a class="text-link" routerLink="/contacto">Solicitar presupuesto</a>
+        <article class="service-card surface-card service-card--media" *ngFor="let service of serviceList">
+          <figure class="service-card__media">
+            <img
+              *ngIf="imageOf(service) as image"
+              [src]="image"
+              [alt]="service.name"
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+            >
+          </figure>
+          <div class="service-card__body">
+            <span class="service-card__icon" [innerHTML]="serviceIcon(service.slug)"></span>
+            <span class="chip">{{ service.badge }}</span>
+            <h2>{{ service.name }}</h2>
+            <p>{{ service.summary }}</p>
+            <ul class="plain-list">
+              <li *ngFor="let item of service.deliverables.slice(0, 2)">{{ item }}</li>
+            </ul>
+            <div class="service-card__footer">
+              <a class="text-link" [routerLink]="service.seo.path">Ver servicio <span aria-hidden="true">→</span></a>
+              <a class="text-link" routerLink="/contacto">Presupuesto</a>
+            </div>
           </div>
         </article>
       </div>
@@ -74,7 +101,10 @@ export class ServicesPageComponent implements OnInit {
   serviceList = services;
   faqs = serviceFaqs;
 
-  constructor(private readonly seo: SeoService) {}
+  constructor(
+    private readonly seo: SeoService,
+    private readonly sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.seo.update({
@@ -95,11 +125,30 @@ export class ServicesPageComponent implements OnInit {
           ])
         ),
         this.seo.createFaqSchema(this.faqs),
+        {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Servicios eléctricos de Electroria",
+          itemListElement: services.map((service, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: service.name,
+            url: `${SITE_URL}${service.seo.path}`,
+          })),
+        },
       ],
     });
   }
 
   getServiceName(slug: string): string {
     return services.find((service) => service.slug === slug)?.name ?? slug;
+  }
+
+  imageOf(service: ServiceEntry): string | undefined {
+    return getServiceImage(service.slug);
+  }
+
+  serviceIcon(slug: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(serviceIconSvg(slug));
   }
 }
