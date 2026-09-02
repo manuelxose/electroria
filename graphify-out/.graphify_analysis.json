@@ -1,7 +1,24 @@
 {
   "communities": {
     "0": [
+      "apps_web_src_app_app_component",
+      "apps_web_src_app_app_component_appcomponent",
+      "apps_web_src_app_app_component_appcomponent_constructor",
+      "apps_web_src_app_app_component_spec",
+      "apps_web_src_app_app_component_ts_component",
+      "apps_web_src_app_app_component_ts_inject",
+      "apps_web_src_app_app_config",
+      "apps_web_src_app_app_config_appconfig",
+      "apps_web_src_app_app_config_browser",
+      "apps_web_src_app_app_config_browser_browserconfig",
+      "apps_web_src_app_app_config_browser_config",
+      "apps_web_src_app_app_config_server",
+      "apps_web_src_app_app_config_server_config",
+      "apps_web_src_app_app_config_server_serverconfig",
       "apps_web_src_app_app_repository_providers",
+      "apps_web_src_app_app_repository_providers_repositoryproviders",
+      "apps_web_src_app_app_routes",
+      "apps_web_src_app_app_routes_routes",
       "apps_web_src_app_domain_repositories_contact_repository",
       "apps_web_src_app_domain_repositories_contact_repository_contact_repository",
       "apps_web_src_app_domain_repositories_contact_repository_contactrepository",
@@ -9,6 +26,8 @@
       "apps_web_src_app_infrastructure_http_api_base_url_token",
       "apps_web_src_app_infrastructure_http_api_base_url_token_api_base_url",
       "apps_web_src_app_infrastructure_http_api_base_url_token_normalizebaseurl",
+      "apps_web_src_app_infrastructure_http_ssr_cookie_interceptor",
+      "apps_web_src_app_infrastructure_http_ssr_cookie_interceptor_ssrcookieinterceptor",
       "apps_web_src_app_infrastructure_repositories_api_api_blog_repository",
       "apps_web_src_app_infrastructure_repositories_api_api_blog_repository_apiblogpost",
       "apps_web_src_app_infrastructure_repositories_api_api_blog_repository_apiblogrepository",
@@ -26,35 +45,19 @@
       "apps_web_src_app_infrastructure_repositories_api_api_contact_repository_apicontactrepository_submitlead",
       "apps_web_src_app_infrastructure_repositories_api_api_contact_repository_ts_inject",
       "apps_web_src_app_infrastructure_repositories_api_api_contact_repository_ts_injectable",
-      "apps_web_src_app_infrastructure_runtime_public_runtime_config",
-      "apps_web_src_app_infrastructure_runtime_public_runtime_config_getpublicruntimeconfig",
-      "apps_web_src_app_infrastructure_runtime_public_runtime_config_publicruntimeconfig",
-      "apps_web_src_app_infrastructure_runtime_public_runtime_config_window",
       "apps_web_src_app_site_components_chat_widget_embed_component",
       "apps_web_src_app_site_components_chat_widget_embed_component_widgetruntimeconfig",
       "apps_web_src_app_site_components_chat_widget_embed_component_widgetwindow",
-      "apps_web_src_app_site_components_contact_form_component",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_constructor",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_ensureturnstilescript",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_f",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_ngoninit",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_onsubmit",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_renderturnstile",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_resetturnstile",
-      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_scrolltosuccess",
-      "apps_web_src_app_site_components_contact_form_component_ts_component",
-      "apps_web_src_app_site_components_contact_form_component_ts_inject",
-      "apps_web_src_app_site_components_contact_form_component_turnstilewindow",
-      "apps_web_src_app_site_content_site_content_contactbudgetranges",
-      "apps_web_src_app_site_content_site_content_contactpropertytypes",
-      "apps_web_src_app_site_content_site_content_contactserviceoptions",
-      "apps_web_src_app_site_content_site_content_contacturgencyoptions",
+      "apps_web_src_app_site_components_site_layout_component_sitelayoutcomponent",
+      "apps_web_src_app_site_components_site_layout_component_ts_component",
       "apps_web_src_app_site_services_analytics_service",
       "apps_web_src_app_site_services_analytics_service_analyticswindow",
       "apps_web_src_app_site_services_analytics_service_consentdecision",
       "apps_web_src_environments_environment",
-      "apps_web_src_environments_environment_environment"
+      "apps_web_src_environments_environment_environment",
+      "apps_web_src_main",
+      "apps_web_src_main_server",
+      "apps_web_src_main_showconsolegreeting"
     ],
     "1": [
       "apps_api_src_config_env",
@@ -160,6 +163,145 @@
       "ref_src_styles_css"
     ],
     "3": [
+      "apps_web_src_app_domain_repositories_blog_repository",
+      "apps_web_src_app_domain_repositories_blog_repository_blog_repository",
+      "apps_web_src_app_domain_repositories_blog_repository_blogrepository",
+      "apps_web_src_app_domain_repositories_blog_repository_blogrepository_detailbyslug",
+      "apps_web_src_app_domain_repositories_blog_repository_blogrepository_list",
+      "apps_web_src_app_site_content_blog_helpers",
+      "apps_web_src_app_site_content_blog_helpers_formatspanishdate",
+      "apps_web_src_app_site_content_blog_helpers_sanitizelegacyarticlehtml",
+      "apps_web_src_app_site_content_site_content_bloglistintro",
+      "apps_web_src_app_site_content_site_content_blogpostentry",
+      "apps_web_src_app_site_content_site_content_getblogpostsbycategory",
+      "apps_web_src_app_site_content_site_content_legacyblogposts",
+      "apps_web_src_app_site_pages_article_page_component",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_constructor",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_loadarticle",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_loadfromapi",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_maplegacypost",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_ngoninit",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_setnotfoundseo",
+      "apps_web_src_app_site_pages_article_page_component_articleview",
+      "apps_web_src_app_site_pages_article_page_component_relatedpostview",
+      "apps_web_src_app_site_pages_article_page_component_ts_component",
+      "apps_web_src_app_site_pages_article_page_component_ts_inject",
+      "apps_web_src_app_site_pages_blog_category_page_component",
+      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent",
+      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_constructor",
+      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_estimatereadingtimeminutes",
+      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_loadcategory",
+      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_loadfromapi",
+      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_ngoninit",
+      "apps_web_src_app_site_pages_blog_category_page_component_ts_component",
+      "apps_web_src_app_site_pages_blog_category_page_component_ts_inject",
+      "apps_web_src_app_site_pages_blog_page_component",
+      "apps_web_src_app_site_pages_blog_page_component_blogcardview"
+    ],
+    "4": [
+      "docs_seo_architecture",
+      "docs_seo_architecture_10_estrategia_de_contenido_a_6_meses",
+      "docs_seo_architecture_1_mapa_de_p\u00e1ginas_y_arquitectura_de_intenci\u00f3n",
+      "docs_seo_architecture_2_keyword_principal_y_secundarias_por_p\u00e1gina",
+      "docs_seo_architecture_3_schema_org_implementado",
+      "docs_seo_architecture_4_enlazado_interno_recomendado",
+      "docs_seo_architecture_5_open_graph_y_metadatos_sociales",
+      "docs_seo_architecture_6_sitemap",
+      "docs_seo_architecture_7_robots_txt",
+      "docs_seo_architecture_8_gaps_sem\u00e1nticos_detectados",
+      "docs_seo_architecture_9_optimizaciones_t\u00e9cnicas_seo_pendientes",
+      "docs_seo_architecture_automatizaci\u00f3n_industrial_servicios_automatizacion_industrial",
+      "docs_seo_architecture_certificaciones_certificaciones",
+      "docs_seo_architecture_contacto_contacto",
+      "docs_seo_architecture_cuadros_el\u00e9ctricos_servicios_cuadros_electricos",
+      "docs_seo_architecture_desde_cada_servicio_hacia",
+      "docs_seo_architecture_desde_home_hacia",
+      "docs_seo_architecture_desde_servicios_hacia",
+      "docs_seo_architecture_eficiencia_energ\u00e9tica_servicios_eficiencia_energetica",
+      "docs_seo_architecture_emergencias_24_7_servicios_emergencias_24_7",
+      "docs_seo_architecture_empresa_empresa",
+      "docs_seo_architecture_gaps_de_contenido_informacional_oportunidad_blog",
+      "docs_seo_architecture_home",
+      "docs_seo_architecture_instalaciones_el\u00e9ctricas_servicios_instalaciones_electricas",
+      "docs_seo_architecture_mantenimiento_preventivo_servicios_mantenimiento_preventivo",
+      "docs_seo_architecture_mes_1_2_base",
+      "docs_seo_architecture_mes_3_4_expansi\u00f3n_local",
+      "docs_seo_architecture_mes_5_6_contenido_y_autoridad",
+      "docs_seo_architecture_oportunidades_no_implementadas",
+      "docs_seo_architecture_palabras_clave_con_intenci\u00f3n_comercial_alta_sin_p\u00e1gina_dedicada",
+      "docs_seo_architecture_seo_architecture_electroria_web",
+      "docs_seo_architecture_servicios_servicios",
+      "docs_seo_architecture_zonas_zonas"
+    ],
+    "5": [
+      "docs_rework_audit_and_delivery",
+      "docs_rework_audit_and_delivery_10_riesgos_y_limitaciones",
+      "docs_rework_audit_and_delivery_11_propuestas_fase_2",
+      "docs_rework_audit_and_delivery_1_resumen_ejecutivo",
+      "docs_rework_audit_and_delivery_2_auditor\u00eda_inicial_principales_problemas_detectados",
+      "docs_rework_audit_and_delivery_3_decisiones_estrat\u00e9gicas",
+      "docs_rework_audit_and_delivery_3_nuevas_faqs_para_seo_home_page",
+      "docs_rework_audit_and_delivery_4_cambios_realizados_por_archivo",
+      "docs_rework_audit_and_delivery_5_cambios_de_copy_destacados",
+      "docs_rework_audit_and_delivery_6_mejoras_de_conversi\u00f3n",
+      "docs_rework_audit_and_delivery_7_mejoras_seo",
+      "docs_rework_audit_and_delivery_8_im\u00e1genes_estado_actual",
+      "docs_rework_audit_and_delivery_9_responsive_estado",
+      "docs_rework_audit_and_delivery_apps_web_src_app_site_components_site_footer_component_ts",
+      "docs_rework_audit_and_delivery_apps_web_src_app_site_components_site_header_component_html",
+      "docs_rework_audit_and_delivery_apps_web_src_app_site_content_site_content_ts",
+      "docs_rework_audit_and_delivery_apps_web_src_app_site_pages_home_page_component_ts",
+      "docs_rework_audit_and_delivery_apps_web_src_styles_css",
+      "docs_rework_audit_and_delivery_contenido_y_seo",
+      "docs_rework_audit_and_delivery_conversi\u00f3n",
+      "docs_rework_audit_and_delivery_cr\u00edticos_contenido_interno_expuesto_en_producci\u00f3n",
+      "docs_rework_audit_and_delivery_dise\u00f1o",
+      "docs_rework_audit_and_delivery_empresa_page_secci\u00f3n_nueva",
+      "docs_rework_audit_and_delivery_errores_tipogr\u00e1ficos_visibles",
+      "docs_rework_audit_and_delivery_hero_h1_antes_despu\u00e9s",
+      "docs_rework_audit_and_delivery_im\u00e1genes",
+      "docs_rework_audit_and_delivery_qu\u00e9_se_cambi\u00f3",
+      "docs_rework_audit_and_delivery_qu\u00e9_se_elimin\u00f3",
+      "docs_rework_audit_and_delivery_qu\u00e9_se_mantuvo",
+      "docs_rework_audit_and_delivery_rework_audit_delivery_electroria_web",
+      "docs_rework_audit_and_delivery_secci\u00f3n_ventajas_antes_despu\u00e9s",
+      "docs_rework_audit_and_delivery_t\u00e9cnico"
+    ],
+    "6": [
+      "apps_web_src_app_infrastructure_runtime_public_runtime_config",
+      "apps_web_src_app_infrastructure_runtime_public_runtime_config_getpublicruntimeconfig",
+      "apps_web_src_app_infrastructure_runtime_public_runtime_config_publicruntimeconfig",
+      "apps_web_src_app_infrastructure_runtime_public_runtime_config_window",
+      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent_constructor",
+      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent_decide",
+      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent_ngoninit",
+      "apps_web_src_app_site_components_consent_banner_component_ts_inject",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_constructor",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_ensureturnstilescript",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_f",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_ngoninit",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_onsubmit",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_renderturnstile",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_resetturnstile",
+      "apps_web_src_app_site_components_contact_form_component_contactformcomponent_scrolltosuccess",
+      "apps_web_src_app_site_components_contact_form_component_ts_component",
+      "apps_web_src_app_site_components_contact_form_component_ts_inject",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_bootstrap",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_constructor",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_grantconsent",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_hasconsent",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_isenabled",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_loadgoogletag",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_readconsent",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_storeconsent",
+      "apps_web_src_app_site_services_analytics_service_analyticsservice_trackevent",
+      "apps_web_src_app_site_services_analytics_service_ts_inject",
+      "apps_web_src_app_site_services_analytics_service_ts_injectable"
+    ],
+    "7": [
       "angular_animations",
       "angular_common",
       "angular_compiler",
@@ -190,7 +332,38 @@
       "tslib",
       "zone_js"
     ],
-    "4": [
+    "8": [
+      "apps_api_package",
+      "apps_api_package_dependencies",
+      "apps_api_package_dependencies_cors",
+      "apps_api_package_dependencies_dotenv",
+      "apps_api_package_dependencies_express",
+      "apps_api_package_dependencies_helmet",
+      "apps_api_package_dependencies_morgan",
+      "apps_api_package_dependencies_nodemailer",
+      "apps_api_package_dependencies_pg",
+      "apps_api_package_dependencies_zod",
+      "apps_api_package_json_express",
+      "apps_api_package_main",
+      "apps_api_package_name",
+      "apps_api_package_private",
+      "apps_api_package_scripts",
+      "apps_api_package_scripts_build",
+      "apps_api_package_scripts_dev",
+      "apps_api_package_scripts_migrate",
+      "apps_api_package_scripts_seed_blog",
+      "apps_api_package_scripts_start",
+      "apps_api_package_type",
+      "apps_api_package_version",
+      "cors",
+      "dotenv",
+      "helmet",
+      "morgan",
+      "nodemailer",
+      "pg",
+      "zod"
+    ],
+    "9": [
       "apps_web_src_app_site_content_site_content",
       "apps_web_src_app_site_content_site_content_blogcategories",
       "apps_web_src_app_site_content_site_content_blogcategoryentry",
@@ -221,7 +394,7 @@
       "apps_web_src_app_site_content_site_content_slugify",
       "apps_web_src_app_site_content_site_content_striphtml"
     ],
-    "5": [
+    "10": [
       "apps_web_tsconfig",
       "apps_web_tsconfig_compileroptions",
       "apps_web_tsconfig_compileroptions_allowsyntheticdefaultimports",
@@ -252,7 +425,7 @@
       "ref_es2022",
       "ref_src"
     ],
-    "6": [
+    "11": [
       "apps_web_package",
       "apps_web_package_author",
       "apps_web_package_description",
@@ -282,36 +455,7 @@
       "apps_web_package_version",
       "domino"
     ],
-    "7": [
-      "apps_web_server",
-      "apps_web_server_app",
-      "apps_web_server_bloglistitem",
-      "apps_web_server_bloglistresponse",
-      "apps_web_server_buildrobotstxt",
-      "apps_web_server_buildsitemapxml",
-      "apps_web_server_cachedblogposts",
-      "apps_web_server_escapexml",
-      "apps_web_server_fetchpublishedblogposts",
-      "apps_web_server_findlegacyredirect",
-      "apps_web_server_getapiinternalurl",
-      "apps_web_server_getcanonicalhost",
-      "apps_web_server_getpublicruntimeconfig",
-      "apps_web_server_isgoneroute",
-      "apps_web_server_normalizepath",
-      "apps_web_server_parseboolean",
-      "apps_web_server_proxytoapi",
-      "apps_web_server_resolvestatuscode",
-      "apps_web_server_run",
-      "apps_web_server_shouldredirecttocanonicalhost",
-      "apps_web_server_sitemapentry",
-      "apps_web_src_app_site_content_site_content_getblogcategorybyslug",
-      "apps_web_src_app_site_content_site_content_getblogpostbyslug",
-      "apps_web_src_app_site_content_site_content_getinfopagebykey",
-      "apps_web_src_app_site_content_site_content_getlocalitybyslug",
-      "apps_web_src_app_site_content_site_content_getservicebyslug",
-      "apps_web_src_main_server_bootstrap"
-    ],
-    "8": [
+    "12": [
       "angular_localize",
       "apps_web_package_dependencies_angular_localize",
       "apps_web_tsconfig_app",
@@ -339,33 +483,33 @@
       "ref_src_main_server_ts",
       "ref_src_main_ts"
     ],
-    "9": [
-      "apps_web_src_app_site_components_consent_banner_component",
-      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent",
-      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent_constructor",
-      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent_decide",
-      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent_ngoninit",
-      "apps_web_src_app_site_components_consent_banner_component_ts_component",
-      "apps_web_src_app_site_components_consent_banner_component_ts_inject",
-      "apps_web_src_app_site_components_site_footer_component_sitefootercomponent",
-      "apps_web_src_app_site_components_site_footer_component_ts_component",
-      "apps_web_src_app_site_components_site_layout_component",
-      "apps_web_src_app_site_components_site_layout_component_sitelayoutcomponent",
-      "apps_web_src_app_site_components_site_layout_component_ts_component",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_bootstrap",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_constructor",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_grantconsent",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_hasconsent",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_isenabled",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_loadgoogletag",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_readconsent",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_storeconsent",
-      "apps_web_src_app_site_services_analytics_service_analyticsservice_trackevent",
-      "apps_web_src_app_site_services_analytics_service_ts_inject",
-      "apps_web_src_app_site_services_analytics_service_ts_injectable"
+    "13": [
+      "apps_web_server",
+      "apps_web_server_app",
+      "apps_web_server_bloglistitem",
+      "apps_web_server_bloglistresponse",
+      "apps_web_server_buildrobotstxt",
+      "apps_web_server_buildsitemapxml",
+      "apps_web_server_cachedblogposts",
+      "apps_web_server_escapexml",
+      "apps_web_server_fetchpublishedblogposts",
+      "apps_web_server_findlegacyredirect",
+      "apps_web_server_getapiinternalurl",
+      "apps_web_server_getcanonicalhost",
+      "apps_web_server_getpublicruntimeconfig",
+      "apps_web_server_isgoneroute",
+      "apps_web_server_normalizepath",
+      "apps_web_server_parseboolean",
+      "apps_web_server_proxytoapi",
+      "apps_web_server_resolvestatuscode",
+      "apps_web_server_run",
+      "apps_web_server_shouldredirecttocanonicalhost",
+      "apps_web_server_sitemapentry",
+      "apps_web_src_app_site_content_site_content_getblogcategorybyslug",
+      "apps_web_src_app_site_content_site_content_getblogpostbyslug",
+      "apps_web_src_main_server_bootstrap"
     ],
-    "10": [
+    "14": [
       "package",
       "package_description",
       "package_name",
@@ -391,61 +535,59 @@
       "ref_apps_web",
       "ref_packages_shared_types"
     ],
-    "11": [
-      "angular_cli",
-      "angular_compiler_cli",
-      "angular_devkit_build_angular",
-      "apps_web_package_devdependencies",
-      "apps_web_package_devdependencies_angular_cli",
-      "apps_web_package_devdependencies_angular_compiler_cli",
-      "apps_web_package_devdependencies_angular_devkit_build_angular",
-      "apps_web_package_devdependencies_esbuild_linux_x64",
-      "apps_web_package_devdependencies_eslint",
-      "apps_web_package_devdependencies_karma",
-      "apps_web_package_devdependencies_karma_chrome_launcher",
-      "apps_web_package_devdependencies_karma_jasmine",
-      "apps_web_package_devdependencies_karma_jasmine_html_reporter",
-      "apps_web_package_devdependencies_nodemon",
-      "apps_web_package_devdependencies_rimraf",
-      "esbuild_linux_x64",
-      "eslint",
-      "karma",
-      "karma_chrome_launcher",
-      "karma_jasmine",
-      "karma_jasmine_html_reporter",
-      "nodemon",
-      "rimraf"
+    "15": [
+      "apps_web_src_app_site_content_site_content_getservicebyslug",
+      "apps_web_src_app_site_content_site_content_getserviceimage",
+      "apps_web_src_app_site_content_site_content_localityentry",
+      "apps_web_src_app_site_content_site_content_serviceentry",
+      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_imageof",
+      "apps_web_src_app_site_pages_locality_page_component",
+      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent",
+      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent_constructor",
+      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent_imageof",
+      "apps_web_src_app_site_pages_locality_page_component_ts_component",
+      "apps_web_src_app_site_pages_service_detail_page_component",
+      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent",
+      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent_constructor",
+      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent_imageof",
+      "apps_web_src_app_site_pages_service_detail_page_component_ts_component",
+      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent",
+      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_constructor",
+      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_getservicename",
+      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_imageof",
+      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_serviceicon",
+      "apps_web_src_app_site_pages_services_page_component_ts_component"
     ],
-    "12": [
-      "apps_web_src_app_app_component",
-      "apps_web_src_app_app_component_appcomponent",
-      "apps_web_src_app_app_component_appcomponent_constructor",
-      "apps_web_src_app_app_component_spec",
-      "apps_web_src_app_app_component_ts_component",
-      "apps_web_src_app_app_component_ts_inject",
-      "apps_web_src_app_app_config",
-      "apps_web_src_app_app_config_appconfig",
-      "apps_web_src_app_app_config_browser",
-      "apps_web_src_app_app_config_browser_browserconfig",
-      "apps_web_src_app_app_config_browser_config",
-      "apps_web_src_app_app_config_server",
-      "apps_web_src_app_app_config_server_config",
-      "apps_web_src_app_app_config_server_serverconfig",
-      "apps_web_src_app_app_repository_providers_repositoryproviders",
-      "apps_web_src_app_infrastructure_http_ssr_cookie_interceptor",
-      "apps_web_src_app_infrastructure_http_ssr_cookie_interceptor_ssrcookieinterceptor",
-      "apps_web_src_main",
-      "apps_web_src_main_server",
-      "apps_web_src_main_showconsolegreeting"
+    "16": [
+      "docs_image_generation_log",
+      "docs_image_generation_log_3a_instalaciones_el\u00e9ctricas",
+      "docs_image_generation_log_3b_cuadros_el\u00e9ctricos",
+      "docs_image_generation_log_3c_mantenimiento_preventivo",
+      "docs_image_generation_log_3d_automatizaci\u00f3n_industrial",
+      "docs_image_generation_log_3e_eficiencia_energ\u00e9tica",
+      "docs_image_generation_log_3f_emergencias_24_7",
+      "docs_image_generation_log_configuraci\u00f3n_recomendada",
+      "docs_image_generation_log_criterio_de_direcci\u00f3n_de_arte",
+      "docs_image_generation_log_estado_actual_de_im\u00e1genes",
+      "docs_image_generation_log_gu\u00eda_para_generar_im\u00e1genes_con_siliconflow",
+      "docs_image_generation_log_image_generation_log_electroria_web",
+      "docs_image_generation_log_optimizaci\u00f3n_recomendada_post_generaci\u00f3n",
+      "docs_image_generation_log_plan_de_generaci\u00f3n_im\u00e1genes_prioritarias",
+      "docs_image_generation_log_prioridad_1_hero_image",
+      "docs_image_generation_log_prioridad_2_abstract_tech_visual_para_secci\u00f3n_dark_ventajas",
+      "docs_image_generation_log_prioridad_3_service_visuals_6_im\u00e1genes",
+      "docs_image_generation_log_prioridad_4_empresa_about",
+      "docs_image_generation_log_prioridad_5_blog_placeholder_og_images",
+      "docs_image_generation_log_script_de_generaci\u00f3n_crear_como_scripts_generate_images_ts"
     ],
-    "13": [
+    "17": [
       "apps_web_src_app_site_components_site_footer_component",
       "apps_web_src_app_site_components_site_header_component",
       "apps_web_src_app_site_content_site_content_contactpagefaqs",
       "apps_web_src_app_site_content_site_content_footerlinks",
       "apps_web_src_app_site_content_site_content_legallinks",
+      "apps_web_src_app_site_content_site_content_localities",
       "apps_web_src_app_site_content_site_content_primarynavigation",
-      "apps_web_src_app_site_content_site_content_services",
       "apps_web_src_app_site_content_site_content_site_address",
       "apps_web_src_app_site_content_site_content_site_email",
       "apps_web_src_app_site_content_site_content_site_name",
@@ -455,53 +597,49 @@
       "apps_web_src_app_site_content_site_content_site_phone_label",
       "apps_web_src_app_site_content_site_content_site_region",
       "apps_web_src_app_site_content_site_content_site_tagline",
-      "apps_web_src_app_site_content_site_content_site_whatsapp",
       "apps_web_src_app_site_pages_contact_page_component",
       "apps_web_src_app_site_services_seo_service",
       "apps_web_src_app_site_services_seo_service_seoconfig"
     ],
-    "14": [
-      "apps_web_src_app_site_content_site_content_buildbreadcrumbitems",
-      "apps_web_src_app_site_pages_contact_page_component_contactpagecomponent",
-      "apps_web_src_app_site_pages_contact_page_component_contactpagecomponent_constructor",
-      "apps_web_src_app_site_pages_contact_page_component_contactpagecomponent_ngoninit",
-      "apps_web_src_app_site_pages_contact_page_component_ts_component",
-      "apps_web_src_app_site_pages_home_page_component_homepagecomponent",
-      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_formatdate",
-      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_loadlatestposts",
-      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_ngoninit",
-      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_serviceicon",
-      "apps_web_src_app_site_pages_home_page_component_ts_component",
-      "apps_web_src_app_site_pages_info_page_component_infopagecomponent",
-      "apps_web_src_app_site_pages_info_page_component_infopagecomponent_constructor",
-      "apps_web_src_app_site_pages_info_page_component_infopagecomponent_ngoninit",
-      "apps_web_src_app_site_pages_info_page_component_ts_component",
-      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent_ngoninit",
-      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent_ngoninit",
-      "apps_web_src_app_site_services_seo_service_seoservice_createbreadcrumbschema",
-      "apps_web_src_app_site_services_seo_service_seoservice_createfaqschema",
-      "apps_web_src_app_site_services_seo_service_seoservice_createserviceschema"
+    "18": [
+      "angular_compiler_cli",
+      "angular_devkit_build_angular",
+      "apps_web_package_devdependencies",
+      "apps_web_package_devdependencies_angular_compiler_cli",
+      "apps_web_package_devdependencies_angular_devkit_build_angular",
+      "apps_web_package_devdependencies_esbuild_linux_x64",
+      "apps_web_package_devdependencies_karma",
+      "apps_web_package_devdependencies_karma_chrome_launcher",
+      "apps_web_package_devdependencies_karma_jasmine",
+      "apps_web_package_devdependencies_karma_jasmine_html_reporter",
+      "apps_web_package_devdependencies_rimraf",
+      "esbuild_linux_x64",
+      "karma",
+      "karma_chrome_launcher",
+      "karma_jasmine",
+      "karma_jasmine_html_reporter",
+      "rimraf"
     ],
-    "15": [
-      "apps_api_package_dependencies",
-      "apps_api_package_dependencies_cors",
-      "apps_api_package_dependencies_dotenv",
-      "apps_api_package_dependencies_express",
-      "apps_api_package_dependencies_helmet",
-      "apps_api_package_dependencies_morgan",
-      "apps_api_package_dependencies_nodemailer",
-      "apps_api_package_dependencies_pg",
-      "apps_api_package_dependencies_zod",
-      "apps_api_package_json_express",
-      "cors",
-      "dotenv",
-      "helmet",
-      "morgan",
-      "nodemailer",
-      "pg",
-      "zod"
+    "19": [
+      "docs_deployment_ssr",
+      "docs_deployment_ssr_bootstrap_http_para_emitir_let_s_encrypt",
+      "docs_deployment_ssr_build",
+      "docs_deployment_ssr_cloudflare_cutover",
+      "docs_deployment_ssr_configuracion_final_https",
+      "docs_deployment_ssr_deploy_ssr_electroria_en_vps",
+      "docs_deployment_ssr_directorios_persistentes",
+      "docs_deployment_ssr_emitir_certificado",
+      "docs_deployment_ssr_nginx",
+      "docs_deployment_ssr_operaciones_post_deploy",
+      "docs_deployment_ssr_postgresql",
+      "docs_deployment_ssr_provision_inicial",
+      "docs_deployment_ssr_requisitos",
+      "docs_deployment_ssr_smoke_tests",
+      "docs_deployment_ssr_systemd",
+      "docs_deployment_ssr_topologia_final",
+      "docs_deployment_ssr_variables_de_entorno"
     ],
-    "16": [
+    "20": [
       "scripts_dev",
       "scripts_dev_children",
       "scripts_dev_colors",
@@ -519,41 +657,40 @@
       "scripts_dev_waitforapihealth",
       "scripts_dev_waitfortcpport"
     ],
-    "17": [
-      "apps_web_src_app_app_routes",
-      "apps_web_src_app_app_routes_routes",
-      "apps_web_src_app_domain_repositories_blog_repository",
-      "apps_web_src_app_domain_repositories_blog_repository_blog_repository",
-      "apps_web_src_app_site_content_site_content_bloglistintro",
-      "apps_web_src_app_site_content_site_content_blogpostentry",
-      "apps_web_src_app_site_content_site_content_getblogpostsbycategory",
-      "apps_web_src_app_site_content_site_content_legacyblogposts",
-      "apps_web_src_app_site_pages_article_page_component",
-      "apps_web_src_app_site_pages_article_page_component_articleview",
-      "apps_web_src_app_site_pages_article_page_component_relatedpostview",
-      "apps_web_src_app_site_pages_blog_category_page_component",
-      "apps_web_src_app_site_pages_blog_page_component",
-      "apps_web_src_app_site_pages_blog_page_component_blogcardview",
-      "apps_web_src_app_site_pages_info_page_component"
+    "21": [
+      "docs_electroria_implementation_report",
+      "docs_electroria_implementation_report_10_mapa_de_urls_original_final",
+      "docs_electroria_implementation_report_11_riesgos_y_mitigaciones",
+      "docs_electroria_implementation_report_12_checklist_qa",
+      "docs_electroria_implementation_report_13_documentaci\u00f3n_operativa",
+      "docs_electroria_implementation_report_14_mejoras_recomendadas_a_futuro",
+      "docs_electroria_implementation_report_1_resumen_ejecutivo",
+      "docs_electroria_implementation_report_2_inventario_del_sitio_actual_de_electroria",
+      "docs_electroria_implementation_report_3_problemas_e_inconsistencias_detectadas",
+      "docs_electroria_implementation_report_4_auditor\u00eda_funcional_y_t\u00e9cnica_de_talkaris",
+      "docs_electroria_implementation_report_5_auditor\u00eda_funcional_y_t\u00e9cnica_de_auctorio",
+      "docs_electroria_implementation_report_6_estrategia_de_integraci\u00f3n_de_electroria_talkaris_auctorio",
+      "docs_electroria_implementation_report_7_arquitectura_angular_final_recomendada",
+      "docs_electroria_implementation_report_8_plan_de_migraci\u00f3n_reimplementaci\u00f3n",
+      "docs_electroria_implementation_report_9_plan_de_despliegue_en_vps"
     ],
-    "18": [
-      "apps_web_src_app_site_content_site_content_getserviceimage",
-      "apps_web_src_app_site_content_site_content_localityentry",
-      "apps_web_src_app_site_content_site_content_serviceentry",
-      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_imageof",
-      "apps_web_src_app_site_pages_locality_page_component",
-      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent",
-      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent_constructor",
-      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent_imageof",
-      "apps_web_src_app_site_pages_locality_page_component_ts_component",
-      "apps_web_src_app_site_pages_service_detail_page_component",
-      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent",
-      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent_constructor",
-      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent_imageof",
-      "apps_web_src_app_site_pages_service_detail_page_component_ts_component",
-      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_imageof"
+    "22": [
+      "apps_web_src_app_site_content_site_content_buildbreadcrumbitems",
+      "apps_web_src_app_site_content_site_content_getlocalitybyslug",
+      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_applyarticle",
+      "apps_web_src_app_site_pages_contact_page_component_contactpagecomponent",
+      "apps_web_src_app_site_pages_contact_page_component_contactpagecomponent_constructor",
+      "apps_web_src_app_site_pages_contact_page_component_contactpagecomponent_ngoninit",
+      "apps_web_src_app_site_pages_contact_page_component_ts_component",
+      "apps_web_src_app_site_pages_locality_page_component_localitypagecomponent_ngoninit",
+      "apps_web_src_app_site_pages_service_detail_page_component_servicedetailpagecomponent_ngoninit",
+      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_ngoninit",
+      "apps_web_src_app_site_services_seo_service_seoservice_createarticleschema",
+      "apps_web_src_app_site_services_seo_service_seoservice_createbreadcrumbschema",
+      "apps_web_src_app_site_services_seo_service_seoservice_createfaqschema",
+      "apps_web_src_app_site_services_seo_service_seoservice_createserviceschema"
     ],
-    "19": [
+    "23": [
       "apps_web_src_app_site_pages_not_found_page_component",
       "apps_web_src_app_site_pages_not_found_page_component_notfoundpagecomponent",
       "apps_web_src_app_site_pages_not_found_page_component_notfoundpagecomponent_constructor",
@@ -569,7 +706,7 @@
       "apps_web_src_app_site_services_seo_service_ts_inject",
       "apps_web_src_app_site_services_seo_service_ts_injectable"
     ],
-    "20": [
+    "24": [
       "apps_api_tsconfig",
       "apps_api_tsconfig_compileroptions",
       "apps_api_tsconfig_compileroptions_esmoduleinterop",
@@ -584,7 +721,7 @@
       "apps_api_tsconfig_include",
       "apps_api_tsconfig_json_ref_src_ts"
     ],
-    "21": [
+    "25": [
       "apps_web_angular",
       "apps_web_angular_cli",
       "apps_web_angular_cli_analytics",
@@ -599,7 +736,7 @@
       "apps_web_angular_web_empresa_schematics",
       "apps_web_angular_web_empresa_sourceroot"
     ],
-    "22": [
+    "26": [
       "apps_web_src_app_site_components_site_header_component_siteheadercomponent",
       "apps_web_src_app_site_components_site_header_component_siteheadercomponent_closemenu",
       "apps_web_src_app_site_components_site_header_component_siteheadercomponent_closemenuandfollow",
@@ -614,7 +751,7 @@
       "hostlistener",
       "viewchild"
     ],
-    "23": [
+    "27": [
       "packages_shared_types_tsconfig",
       "packages_shared_types_tsconfig_compileroptions",
       "packages_shared_types_tsconfig_compileroptions_declaration",
@@ -629,35 +766,7 @@
       "packages_shared_types_tsconfig_include",
       "packages_shared_types_tsconfig_json_ref_src_ts"
     ],
-    "24": [
-      "apps_api_package",
-      "apps_api_package_main",
-      "apps_api_package_name",
-      "apps_api_package_private",
-      "apps_api_package_scripts",
-      "apps_api_package_scripts_build",
-      "apps_api_package_scripts_dev",
-      "apps_api_package_scripts_migrate",
-      "apps_api_package_scripts_seed_blog",
-      "apps_api_package_scripts_start",
-      "apps_api_package_type",
-      "apps_api_package_version"
-    ],
-    "25": [
-      "apps_api_package_devdependencies",
-      "apps_api_package_devdependencies_tsx",
-      "apps_api_package_devdependencies_types_cors",
-      "apps_api_package_devdependencies_types_morgan",
-      "apps_api_package_devdependencies_types_node",
-      "apps_api_package_devdependencies_types_pg",
-      "apps_api_package_json_types_node",
-      "apps_web_package_devdependencies_types_node",
-      "tsx",
-      "types_cors",
-      "types_morgan",
-      "types_pg"
-    ],
-    "26": [
+    "28": [
       "apps_web_src_app_site_components_chat_widget_embed_component_chatwidgetembedcomponent",
       "apps_web_src_app_site_components_chat_widget_embed_component_chatwidgetembedcomponent_constructor",
       "apps_web_src_app_site_components_chat_widget_embed_component_chatwidgetembedcomponent_getruntimeconfig",
@@ -671,21 +780,20 @@
       "apps_web_src_app_site_components_chat_widget_embed_component_ts_component",
       "apps_web_src_app_site_components_chat_widget_embed_component_ts_inject"
     ],
-    "27": [
-      "apps_web_src_app_site_content_blog_helpers",
-      "apps_web_src_app_site_content_blog_helpers_formatspanishdate",
-      "apps_web_src_app_site_content_blog_helpers_sanitizelegacyarticlehtml",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_applyarticle",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_loadarticle",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_loadfromapi",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_maplegacypost",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_ngoninit",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_setnotfoundseo",
-      "apps_web_src_app_site_pages_article_page_component_ts_component",
-      "apps_web_src_app_site_services_seo_service_seoservice_createarticleschema"
+    "29": [
+      "docs_web_rework_master_plan_blog",
+      "docs_web_rework_master_plan_casos_de_exito",
+      "docs_web_rework_master_plan_contacto",
+      "docs_web_rework_master_plan_empresa",
+      "docs_web_rework_master_plan_f_wireframe_textual_por_pagina",
+      "docs_web_rework_master_plan_faq",
+      "docs_web_rework_master_plan_home",
+      "docs_web_rework_master_plan_metodologia",
+      "docs_web_rework_master_plan_servicio_individual",
+      "docs_web_rework_master_plan_servicios",
+      "docs_web_rework_master_plan_soluciones"
     ],
-    "28": [
+    "30": [
       "packages_shared_types_package",
       "packages_shared_types_package_files",
       "packages_shared_types_package_main",
@@ -698,29 +806,75 @@
       "packages_shared_types_package_version",
       "ref_dist"
     ],
-    "29": [
-      "apps_web_src_app_domain_repositories_blog_repository_blogrepository",
-      "apps_web_src_app_domain_repositories_blog_repository_blogrepository_detailbyslug",
-      "apps_web_src_app_domain_repositories_blog_repository_blogrepository_list",
-      "apps_web_src_app_site_pages_article_page_component_articlepagecomponent_constructor",
-      "apps_web_src_app_site_pages_article_page_component_ts_inject",
-      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_constructor",
-      "apps_web_src_app_site_pages_blog_category_page_component_ts_inject",
-      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_constructor",
-      "apps_web_src_app_site_pages_home_page_component_ts_inject"
-    ],
-    "30": [
-      "apps_web_src_app_site_content_site_content_competitiveadvantages",
-      "apps_web_src_app_site_content_site_content_coveragehighlights",
-      "apps_web_src_app_site_content_site_content_herohighlights",
-      "apps_web_src_app_site_content_site_content_homefaqs",
-      "apps_web_src_app_site_content_site_content_localities",
-      "apps_web_src_app_site_content_site_content_processsteps",
-      "apps_web_src_app_site_content_site_content_servicecards",
-      "apps_web_src_app_site_content_site_content_trustmetrics",
-      "apps_web_src_app_site_pages_home_page_component"
-    ],
     "31": [
+      "claude",
+      "claude_architect",
+      "claude_behavioral_rules",
+      "claude_build_test_commands",
+      "claude_claude_md_electroria_agent_guide",
+      "claude_developer",
+      "claude_project_context",
+      "claude_role_specific_missions",
+      "claude_tester",
+      "claude_ux_ui"
+    ],
+    "32": [
+      "docs_web_rework_master_plan",
+      "docs_web_rework_master_plan_arbol_principal",
+      "docs_web_rework_master_plan_c_nueva_arquitectura_de_informacion",
+      "docs_web_rework_master_plan_hecho_en_esta_iteracion",
+      "docs_web_rework_master_plan_k_tareas_y_subtareas_detalladas",
+      "docs_web_rework_master_plan_politica_de_redirecciones",
+      "docs_web_rework_master_plan_resultado_esperado",
+      "docs_web_rework_master_plan_siguiente_bloque_recomendado",
+      "docs_web_rework_master_plan_update_v2_seo_ux_ui_premium_chatbots_como_servicio_pilar",
+      "docs_web_rework_master_plan_web_rework_master_plan"
+    ],
+    "33": [
+      "apps_api_package_devdependencies",
+      "apps_api_package_devdependencies_tsx",
+      "apps_api_package_devdependencies_types_cors",
+      "apps_api_package_devdependencies_types_morgan",
+      "apps_api_package_devdependencies_types_pg",
+      "tsx",
+      "types_cors",
+      "types_morgan",
+      "types_pg"
+    ],
+    "34": [
+      "apps_web_src_app_site_content_site_content_servicefaqs",
+      "apps_web_src_app_site_content_site_content_servicegroups",
+      "apps_web_src_app_site_content_site_content_services",
+      "apps_web_src_app_site_content_site_content_site_url",
+      "apps_web_src_app_site_pages_services_page_component",
+      "apps_web_src_app_site_services_service_icons",
+      "apps_web_src_app_site_services_service_icons_service_icons",
+      "apps_web_src_app_site_services_service_icons_serviceicon",
+      "apps_web_src_app_site_services_service_icons_svg"
+    ],
+    "35": [
+      "docs_operations",
+      "docs_operations_base_de_datos",
+      "docs_operations_blog_editorial",
+      "docs_operations_build",
+      "docs_operations_checklist_rapido_antes_de_publicar",
+      "docs_operations_datos_visibles_editables",
+      "docs_operations_formularios",
+      "docs_operations_operativa_diaria_electroria",
+      "docs_operations_servicios_del_vps"
+    ],
+    "36": [
+      "docs_web_rework_master_plan_1_software_a_medida",
+      "docs_web_rework_master_plan_2_automatizacion_de_procesos",
+      "docs_web_rework_master_plan_3_inteligencia_artificial_para_empresas",
+      "docs_web_rework_master_plan_4_plataformas_y_saas",
+      "docs_web_rework_master_plan_5_consultoria_tecnologica",
+      "docs_web_rework_master_plan_clusters_activos",
+      "docs_web_rework_master_plan_d_estrategia_seo",
+      "docs_web_rework_master_plan_decisiones_para_evitar_canibalizacion",
+      "docs_web_rework_master_plan_enlazado_interno"
+    ],
+    "37": [
       "scripts_generate_images",
       "scripts_generate_images_dirname",
       "scripts_generate_images_downloadimage",
@@ -731,7 +885,7 @@
       "scripts_generate_images_output_dir",
       "scripts_generate_images_root"
     ],
-    "32": [
+    "38": [
       "apps_api_migrations_001_init",
       "apps_api_migrations_001_init_blog_posts",
       "apps_api_migrations_001_init_contact_messages",
@@ -741,17 +895,37 @@
       "apps_api_migrations_002_auth_upgrade_access_requests",
       "apps_api_migrations_002_auth_upgrade_password_reset_tokens"
     ],
-    "33": [
-      "apps_web_src_app_site_content_site_content_servicefaqs",
-      "apps_web_src_app_site_content_site_content_servicegroups",
-      "apps_web_src_app_site_content_site_content_site_url",
-      "apps_web_src_app_site_pages_services_page_component",
-      "apps_web_src_app_site_services_service_icons",
-      "apps_web_src_app_site_services_service_icons_service_icons",
-      "apps_web_src_app_site_services_service_icons_serviceicon",
-      "apps_web_src_app_site_services_service_icons_svg"
+    "39": [
+      "apps_web_src_app_site_content_site_content_competitiveadvantages",
+      "apps_web_src_app_site_content_site_content_coveragehighlights",
+      "apps_web_src_app_site_content_site_content_herohighlights",
+      "apps_web_src_app_site_content_site_content_homefaqs",
+      "apps_web_src_app_site_content_site_content_processsteps",
+      "apps_web_src_app_site_content_site_content_servicecards",
+      "apps_web_src_app_site_content_site_content_trustmetrics",
+      "apps_web_src_app_site_pages_home_page_component"
     ],
-    "34": [
+    "40": [
+      "apps_web_src_app_site_pages_home_page_component_homepagecomponent",
+      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_constructor",
+      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_formatdate",
+      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_loadlatestposts",
+      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_ngoninit",
+      "apps_web_src_app_site_pages_home_page_component_homepagecomponent_serviceicon",
+      "apps_web_src_app_site_pages_home_page_component_ts_component",
+      "apps_web_src_app_site_pages_home_page_component_ts_inject"
+    ],
+    "41": [
+      "docs_web_rework_master_plan_fase_1_auditoria",
+      "docs_web_rework_master_plan_fase_2_arquitectura",
+      "docs_web_rework_master_plan_fase_3_copy_y_seo",
+      "docs_web_rework_master_plan_fase_4_ui",
+      "docs_web_rework_master_plan_fase_5_desarrollo",
+      "docs_web_rework_master_plan_fase_6_optimizacion",
+      "docs_web_rework_master_plan_fase_7_medicion_y_mejora",
+      "docs_web_rework_master_plan_j_roadmap_de_implementacion"
+    ],
+    "42": [
       "packages_shared_types_src_index",
       "packages_shared_types_src_index_apierror",
       "packages_shared_types_src_index_auditurlentry",
@@ -761,7 +935,16 @@
       "packages_shared_types_src_index_paginated",
       "packages_shared_types_src_index_publicationevent"
     ],
-    "35": [
+    "43": [
+      "apps_web_src_app_site_components_consent_banner_component",
+      "apps_web_src_app_site_components_consent_banner_component_consentbannercomponent",
+      "apps_web_src_app_site_components_consent_banner_component_ts_component",
+      "apps_web_src_app_site_components_site_footer_component_sitefootercomponent",
+      "apps_web_src_app_site_components_site_footer_component_ts_component",
+      "apps_web_src_app_site_components_site_layout_component",
+      "apps_web_src_app_site_content_site_content_site_whatsapp"
+    ],
+    "44": [
       "apps_web_src_app_site_pages_blog_page_component_blogpagecomponent",
       "apps_web_src_app_site_pages_blog_page_component_blogpagecomponent_constructor",
       "apps_web_src_app_site_pages_blog_page_component_blogpagecomponent_estimatereadingtimelabel",
@@ -770,131 +953,232 @@
       "apps_web_src_app_site_pages_blog_page_component_ts_component",
       "apps_web_src_app_site_pages_blog_page_component_ts_inject"
     ],
-    "36": [
-      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent",
-      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_estimatereadingtimeminutes",
-      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_loadcategory",
-      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_loadfromapi",
-      "apps_web_src_app_site_pages_blog_category_page_component_blogcategorypagecomponent_ngoninit",
-      "apps_web_src_app_site_pages_blog_category_page_component_ts_component"
+    "45": [
+      "apps_web_src_app_site_components_contact_form_component",
+      "apps_web_src_app_site_components_contact_form_component_turnstilewindow",
+      "apps_web_src_app_site_content_site_content_contactbudgetranges",
+      "apps_web_src_app_site_content_site_content_contactpropertytypes",
+      "apps_web_src_app_site_content_site_content_contactserviceoptions",
+      "apps_web_src_app_site_content_site_content_contacturgencyoptions"
     ],
-    "37": [
-      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent",
-      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_constructor",
-      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_getservicename",
-      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_ngoninit",
-      "apps_web_src_app_site_pages_services_page_component_servicespagecomponent_serviceicon",
-      "apps_web_src_app_site_pages_services_page_component_ts_component"
+    "46": [
+      "apps_web_src_app_site_content_site_content_getinfopagebykey",
+      "apps_web_src_app_site_pages_info_page_component",
+      "apps_web_src_app_site_pages_info_page_component_infopagecomponent",
+      "apps_web_src_app_site_pages_info_page_component_infopagecomponent_constructor",
+      "apps_web_src_app_site_pages_info_page_component_infopagecomponent_ngoninit",
+      "apps_web_src_app_site_pages_info_page_component_ts_component"
     ],
-    "38": [
+    "47": [
+      "docs_plan_execution_status",
+      "docs_plan_execution_status_electroria_plan_maestro_estado_de_ejecucion",
+      "docs_plan_execution_status_estado_actual",
+      "docs_plan_execution_status_legacy_eliminado",
+      "docs_plan_execution_status_pendiente_operativo",
+      "docs_plan_execution_status_validaciones_cerradas"
+    ],
+    "48": [
+      "docs_web_rework_master_plan_1_problemas_de_conversion",
+      "docs_web_rework_master_plan_2_problemas_seo",
+      "docs_web_rework_master_plan_3_problemas_visuales_y_de_autoridad",
+      "docs_web_rework_master_plan_4_problemas_tecnicos",
+      "docs_web_rework_master_plan_5_diagnostico_resumido",
+      "docs_web_rework_master_plan_a_auditoria_de_la_web_actual"
+    ],
+    "49": [
+      "docs_web_rework_master_plan_cta_base",
+      "docs_web_rework_master_plan_faq_base",
+      "docs_web_rework_master_plan_g_copy_base_recomendado",
+      "docs_web_rework_master_plan_mensajes_de_confianza",
+      "docs_web_rework_master_plan_subtitulos_base",
+      "docs_web_rework_master_plan_titulares_base"
+    ],
+    "50": [
       "apps_api_package_devdependencies_typescript",
       "apps_api_package_json_typescript",
       "apps_web_package_devdependencies_typescript",
       "packages_shared_types_package_devdependencies",
       "packages_shared_types_package_devdependencies_typescript"
     ],
-    "39": [
+    "51": [
       "infra_cloudflare_cutover",
       "infra_cloudflare_cutover_cf_api",
       "infra_cloudflare_cutover_require_env",
       "infra_cloudflare_cutover_sh__entry",
       "infra_cloudflare_cutover_upsert_a_record"
     ],
-    "40": [
+    "52": [
+      "agents",
+      "agents_agents_md_electroria_ai_agents",
+      "agents_available_agent_roles",
+      "agents_optimization_policy"
+    ],
+    "53": [
+      "docs_web_rework_master_plan_b_estrategia_general_de_rework",
+      "docs_web_rework_master_plan_enfoque_aplicado_en_el_codigo",
+      "docs_web_rework_master_plan_objetivos",
+      "docs_web_rework_master_plan_vision"
+    ],
+    "54": [
+      "docs_web_rework_master_plan_decisiones_clave_implementadas",
+      "docs_web_rework_master_plan_fricciones_eliminadas",
+      "docs_web_rework_master_plan_h_estrategia_de_conversion",
+      "docs_web_rework_master_plan_objeciones_cubiertas"
+    ],
+    "55": [
+      "docs_web_rework_master_plan_direccion_de_arte",
+      "docs_web_rework_master_plan_e_propuesta_ux_ui",
+      "docs_web_rework_master_plan_principios_visuales",
+      "docs_web_rework_master_plan_responsive"
+    ],
+    "56": [
+      "docs_web_rework_master_plan_i_recomendaciones_tecnicas",
+      "docs_web_rework_master_plan_implementado",
+      "docs_web_rework_master_plan_mejora_de_rendimiento_conseguida",
+      "docs_web_rework_master_plan_riesgos_residuales"
+    ],
+    "57": [
       "apps_api_package_devdependencies_types_express",
       "apps_api_package_json_types_express",
       "apps_web_package_devdependencies_types_express"
     ],
-    "41": [
+    "58": [
+      "apps_api_package_devdependencies_types_node",
+      "apps_api_package_json_types_node",
+      "apps_web_package_devdependencies_types_node"
+    ],
+    "59": [
+      "angular_cli",
+      "apps_web_package_devdependencies_angular_cli"
+    ],
+    "60": [
       "apps_api_src_types_nodemailer_d",
       "apps_api_src_types_nodemailer_d_nodemailer"
     ],
-    "42": [
+    "61": [
+      "apps_web_deployment_ssr",
+      "apps_web_deployment_ssr_deprecated_path"
+    ],
+    "62": [
+      "apps_web_package_devdependencies_eslint",
+      "eslint"
+    ],
+    "63": [
       "apps_web_package_devdependencies_jasmine_core",
       "jasmine_core"
     ],
-    "43": [
+    "64": [
+      "apps_web_package_devdependencies_nodemon",
+      "nodemon"
+    ],
+    "65": [
       "apps_web_src_environments_environment_prod",
       "apps_web_src_environments_environment_prod_environment"
     ],
-    "44": [
+    "66": [
       "apps_web_src_test",
       "apps_web_src_test_context"
     ],
-    "45": [
+    "67": [
       "infra_scripts_backup_postgres",
       "infra_scripts_backup_postgres_sh__entry"
     ],
-    "46": [
+    "68": [
       "infra_scripts_restore_postgres",
       "infra_scripts_restore_postgres_sh__entry"
     ],
-    "47": [
+    "69": [
       "infra_scripts_rollback_release",
       "infra_scripts_rollback_release_sh__entry"
     ],
-    "48": [
+    "70": [
       "apps_api_migrations_003_public_site_upgrade"
     ],
-    "49": [
+    "71": [
       "apps_api_migrations_004_remove_legacy_auth"
     ],
-    "50": [
+    "72": [
       "apps_web_src_polyfills"
+    ],
+    "73": [
+      "github_copilot_instructions"
     ]
   },
   "cohesion": {
-    "0": 0.055904961565338925,
+    "0": 0.05263157894736842,
     "1": 0.07183673469387755,
     "2": 0.04591836734693878,
-    "3": 0.06896551724137931,
-    "4": 0.07635467980295567,
-    "5": 0.06896551724137931,
-    "6": 0.07142857142857142,
-    "7": 0.14245014245014245,
-    "8": 0.08,
-    "9": 0.13405797101449277,
-    "10": 0.08333333333333333,
-    "11": 0.08695652173913043,
-    "12": 0.14736842105263157,
-    "13": 0.18421052631578946,
-    "14": 0.14736842105263157,
-    "15": 0.11764705882352941,
-    "16": 0.275,
-    "17": 0.2,
-    "18": 0.22857142857142856,
-    "19": 0.2087912087912088,
-    "20": 0.15384615384615385,
-    "21": 0.15384615384615385,
-    "22": 0.2564102564102564,
-    "23": 0.15384615384615385,
-    "24": 0.16666666666666666,
-    "25": 0.16666666666666666,
-    "26": 0.2727272727272727,
-    "27": 0.2878787878787879,
-    "28": 0.18181818181818182,
-    "29": 0.2222222222222222,
-    "30": 0.2222222222222222,
-    "31": 0.2777777777777778,
-    "32": 0.25,
-    "33": 0.2857142857142857,
+    "3": 0.09915966386554621,
+    "4": 0.06060606060606061,
+    "5": 0.06653225806451613,
+    "6": 0.0967741935483871,
+    "7": 0.06896551724137931,
+    "8": 0.06896551724137931,
+    "9": 0.07635467980295567,
+    "10": 0.06896551724137931,
+    "11": 0.07142857142857142,
+    "12": 0.08,
+    "13": 0.15942028985507245,
+    "14": 0.08333333333333333,
+    "15": 0.14761904761904762,
+    "16": 0.1,
+    "17": 0.18128654970760233,
+    "18": 0.11764705882352941,
+    "19": 0.11764705882352941,
+    "20": 0.275,
+    "21": 0.13333333333333333,
+    "22": 0.21978021978021978,
+    "23": 0.2087912087912088,
+    "24": 0.15384615384615385,
+    "25": 0.15384615384615385,
+    "26": 0.2564102564102564,
+    "27": 0.15384615384615385,
+    "28": 0.2727272727272727,
+    "29": 0.18181818181818182,
+    "30": 0.18181818181818182,
+    "31": 0.2,
+    "32": 0.2,
+    "33": 0.2222222222222222,
     "34": 0.25,
-    "35": 0.3333333333333333,
-    "36": 0.5333333333333333,
-    "37": 0.3333333333333333,
-    "38": 0.4,
-    "39": 0.8,
-    "40": 0.6666666666666666,
-    "41": 1.0,
-    "42": 1.0,
-    "43": 1.0,
-    "44": 1.0,
-    "45": 1.0,
-    "46": 1.0,
-    "47": 1.0,
-    "48": 1.0,
-    "49": 1.0,
-    "50": 1.0
+    "35": 0.2222222222222222,
+    "36": 0.2222222222222222,
+    "37": 0.2777777777777778,
+    "38": 0.25,
+    "39": 0.25,
+    "40": 0.2857142857142857,
+    "41": 0.25,
+    "42": 0.25,
+    "43": 0.3333333333333333,
+    "44": 0.3333333333333333,
+    "45": 0.3333333333333333,
+    "46": 0.4,
+    "47": 0.3333333333333333,
+    "48": 0.3333333333333333,
+    "49": 0.3333333333333333,
+    "50": 0.4,
+    "51": 0.8,
+    "52": 0.5,
+    "53": 0.5,
+    "54": 0.5,
+    "55": 0.5,
+    "56": 0.5,
+    "57": 0.6666666666666666,
+    "58": 0.6666666666666666,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0
   },
   "gods": [
     {
@@ -938,14 +1222,14 @@
       "degree": 14
     },
     {
+      "id": "docs_web_rework_master_plan_web_rework_master_plan",
+      "label": "Web Rework Master Plan",
+      "degree": 14
+    },
+    {
       "id": "apps_web_src_app_domain_repositories_blog_repository_blogrepository",
       "label": "BlogRepository",
       "degree": 13
-    },
-    {
-      "id": "apps_web_src_app_site_components_contact_form_component_contactformcomponent",
-      "label": "ContactFormComponent",
-      "degree": 12
     }
   ],
   "surprises": [
@@ -961,14 +1245,36 @@
       "why": "bridges separate communities; peripheral node `src/polyfills.ts` unexpectedly reaches hub `files`"
     },
     {
-      "source": "ApiBlogRepository",
-      "target": "BlogRepository",
+      "source": "resolveStatusCode()",
+      "target": "getInfoPageByKey()",
       "source_files": [
-        "apps/web/src/app/infrastructure/repositories/api/api-blog.repository.ts",
-        "apps/web/src/app/domain/repositories/blog.repository.ts"
+        "apps/web/server.ts",
+        "apps/web/src/app/site/content/site-content.ts"
       ],
       "confidence": "EXTRACTED",
-      "relation": "implements",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "resolveStatusCode()",
+      "target": "getLocalityBySlug()",
+      "source_files": [
+        "apps/web/server.ts",
+        "apps/web/src/app/site/content/site-content.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "resolveStatusCode()",
+      "target": "getServiceBySlug()",
+      "source_files": [
+        "apps/web/server.ts",
+        "apps/web/src/app/site/content/site-content.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
       "why": "bridges separate communities"
     },
     {
@@ -981,65 +1287,10 @@
       "confidence": "INFERRED",
       "relation": "indirect_call",
       "why": "inferred connection - not explicitly stated in source"
-    },
-    {
-      "source": "ApiContactRepository",
-      "target": "ContactRepository",
-      "source_files": [
-        "apps/web/src/app/infrastructure/repositories/api/api-contact.repository.ts",
-        "apps/web/src/app/domain/repositories/contact.repository.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "implements",
-      "why": "cross-file semantic connection"
-    },
-    {
-      "source": "LocalityPageComponent",
-      "target": "LocalityEntry",
-      "source_files": [
-        "apps/web/src/app/site/pages/locality-page.component.ts",
-        "apps/web/src/app/site/content/site-content.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "cross-file semantic connection"
     }
   ],
-  "questions": [
-    {
-      "type": "bridge_node",
-      "question": "Why does `dependencies` connect `dependencies` to `tsconfig.app.json`, `scripts`?",
-      "why": "High betweenness centrality (0.058) - this node is a cross-community bridge."
-    },
-    {
-      "type": "bridge_node",
-      "question": "Why does `devDependencies` connect `devDependencies` to `scripts`, `typescript`, `@types/express`, `jasmine-core`, `devDependencies`?",
-      "why": "High betweenness centrality (0.051) - this node is a cross-community bridge."
-    },
-    {
-      "type": "bridge_node",
-      "question": "Why does `@angular/localize` connect `tsconfig.app.json` to `dependencies`?",
-      "why": "High betweenness centrality (0.045) - this node is a cross-community bridge."
-    },
-    {
-      "type": "isolated_nodes",
-      "question": "What connects `ApiBlogPost`, `BlogSnapshotDoc`, `BlogSnapshotLike` to the rest of the system?",
-      "why": "273 weakly-connected nodes found - possible documentation gaps or missing edges."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `contact-form.component.ts` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.055904961565338925 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `contact.ts` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.07183673469387755 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `options` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.04591836734693878 - nodes in this community are weakly interconnected."
-    }
-  ]
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
 }
